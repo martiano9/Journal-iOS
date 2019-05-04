@@ -27,6 +27,8 @@
 		E21ED1D0227AEFA6009A8F6B /* MyDiaryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21ED1CF227AEFA6009A8F6B /* MyDiaryTableViewController.swift */; };
 		E21ED1D2227C192D009A8F6B /* Date+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21ED1D1227C192D009A8F6B /* Date+Format.swift */; };
 		E21ED1D4227C2210009A8F6B /* Mood.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21ED1D3227C2210009A8F6B /* Mood.swift */; };
+		E21ED1D6227C664A009A8F6B /* CreateDiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21ED1D5227C664A009A8F6B /* CreateDiaryViewController.swift */; };
+		E2FCA0D1227D4F3400B54A27 /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FCA0D0227D4F3400B54A27 /* PlaceholderTextView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +54,8 @@
 		E21ED1CF227AEFA6009A8F6B /* MyDiaryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDiaryTableViewController.swift; sourceTree = "<group>"; };
 		E21ED1D1227C192D009A8F6B /* Date+Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Format.swift"; sourceTree = "<group>"; };
 		E21ED1D3227C2210009A8F6B /* Mood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mood.swift; sourceTree = "<group>"; };
+		E21ED1D5227C664A009A8F6B /* CreateDiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDiaryViewController.swift; sourceTree = "<group>"; };
+		E2FCA0D0227D4F3400B54A27 /* PlaceholderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +119,7 @@
 				E21ED1C02279FDC7009A8F6B /* FavoriteViewController.swift */,
 				E21ED1C22279FDF0009A8F6B /* SettingsViewController.swift */,
 				E21ED1CF227AEFA6009A8F6B /* MyDiaryTableViewController.swift */,
+				E21ED1D5227C664A009A8F6B /* CreateDiaryViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -125,6 +130,7 @@
 				E21ED1B52279DD7A009A8F6B /* WeatherHeader.swift */,
 				E21ED1BC2279FC0F009A8F6B /* BarButtonIcon.swift */,
 				E21ED1C4227AB2B6009A8F6B /* DiaryTableViewCell.swift */,
+				E2FCA0D0227D4F3400B54A27 /* PlaceholderTextView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -232,11 +238,13 @@
 				E21ED1C12279FDC7009A8F6B /* FavoriteViewController.swift in Sources */,
 				E21ED1CE227ADFA7009A8F6B /* Bool+Convert.swift in Sources */,
 				E21ED1BD2279FC0F009A8F6B /* BarButtonIcon.swift in Sources */,
+				E21ED1D6227C664A009A8F6B /* CreateDiaryViewController.swift in Sources */,
 				E21ED1BB2279F607009A8F6B /* UIColor+Theme.swift in Sources */,
 				E21ED1B62279DD7A009A8F6B /* WeatherHeader.swift in Sources */,
 				E21ED1CC227ABB57009A8F6B /* SQLite+Diary.swift in Sources */,
 				E21ED1D2227C192D009A8F6B /* Date+Format.swift in Sources */,
 				E21ED1C7227AB854009A8F6B /* Diary.swift in Sources */,
+				E2FCA0D1227D4F3400B54A27 /* PlaceholderTextView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
