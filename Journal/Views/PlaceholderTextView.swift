@@ -9,6 +9,7 @@
 
 import UIKit
 
+@IBDesignable
 class PlaceholderTextView: UITextView {
     
     @IBInspectable var placeholderColor: UIColor = UIColor.lightGray
@@ -54,10 +55,12 @@ class PlaceholderTextView: UITextView {
     }
     
     private func setUp() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(self.textChanged(notification:)),
-                                               name: Notification.Name("UITextViewTextDidChangeNotification"),
-                                               object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.textChanged(notification:)),
+            name: Notification.Name("UITextViewTextDidChangeNotification"),
+            object: nil
+        )
     }
     
     @objc func textChanged(notification: NSNotification) {

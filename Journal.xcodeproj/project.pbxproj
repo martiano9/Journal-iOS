@@ -29,6 +29,7 @@
 		E21ED1D4227C2210009A8F6B /* Mood.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21ED1D3227C2210009A8F6B /* Mood.swift */; };
 		E21ED1D6227C664A009A8F6B /* CreateDiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21ED1D5227C664A009A8F6B /* CreateDiaryViewController.swift */; };
 		E2FCA0D1227D4F3400B54A27 /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FCA0D0227D4F3400B54A27 /* PlaceholderTextView.swift */; };
+		E2FCA0D3227E78AC00B54A27 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FCA0D2227E78AC00B54A27 /* Weather.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		E21ED1D3227C2210009A8F6B /* Mood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mood.swift; sourceTree = "<group>"; };
 		E21ED1D5227C664A009A8F6B /* CreateDiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDiaryViewController.swift; sourceTree = "<group>"; };
 		E2FCA0D0227D4F3400B54A27 /* PlaceholderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; };
+		E2FCA0D2227E78AC00B54A27 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 			children = (
 				E21ED1C6227AB854009A8F6B /* Diary.swift */,
 				E21ED1D3227C2210009A8F6B /* Mood.swift */,
+				E2FCA0D2227E78AC00B54A27 /* Weather.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 				E21ED1BF2279FD96009A8F6B /* MoodViewController.swift in Sources */,
 				E21ED1D0227AEFA6009A8F6B /* MyDiaryTableViewController.swift in Sources */,
 				E21ED1C9227ABAE1009A8F6B /* SQLite.swift in Sources */,
+				E2FCA0D3227E78AC00B54A27 /* Weather.swift in Sources */,
 				E208544D22558E6400B24D7F /* SecondViewController.swift in Sources */,
 				E21ED1D4227C2210009A8F6B /* Mood.swift in Sources */,
 				E208544922558E6400B24D7F /* AppDelegate.swift in Sources */,
