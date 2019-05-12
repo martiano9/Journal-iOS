@@ -57,13 +57,49 @@ extension SQLite {
         })
     }
     
+    public func updateDiary(diary: Diary) {
+        let query = """
+            Update Diary set
+                Title = ?, Text = ?, Location = ?, Mood = ?, Weather = ?, IsFavorite = ?, Image = ?,
+                Edited = CURRENT_TIMESTAMP where Id=?;
+        """
+        updateWithQuery(query, bindingFunction: { (statement) in
+            
+            sqlite3_bind_text(statement, 1, NSString(string:diary.title).utf8String, -1, nil)
+            sqlite3_bind_text(statement, 2, NSString(string:diary.text).utf8String, -1, nil)
+            sqlite3_bind_text(statement, 3, NSString(string:diary.location).utf8String, -1, nil)
+            sqlite3_bind_int(statement, 4, diary.mood)
+            sqlite3_bind_int(statement, 5, diary.weather)
+            sqlite3_bind_int(statement, 6, diary.isFavorite.intValue)
+            if let len=diary.image?.count {
+                sqlite3_bind_blob(statement, 7, diary.image?.bytes, Int32(len), nil)
+            }
+            else {
+                sqlite3_bind_blob(statement, 7, diary.image?.bytes, 0, nil)
+            }
+            //sqlite3_bind_blob(statement, 7, diary.image)
+            sqlite3_bind_int(statement, 8, diary.ID)
+            //            sqlite3_bind_blob(insertStatement, 8, diary.image?.bytes, Int32(diary.image?.length), nil)
+        })
+    }
+    
+    public func deleteDiary(Id: Int32) {
+        let Query = """
+            delete from Diary where Id=?;
+        """
+        deleteWithQuery(Query, bindingFunction: { (statement) in
+            sqlite3_bind_int(statement, 1, Id)
+            
+        })
+    }
+    
     func selectAllDiaries() -> [Diary]
     {
         var result = [Diary]()
         let selectQuery = "SELECT * FROM Diary"
         selectWithQuery(selectQuery, eachRow: { (row) in
             //create a movie object from each result
-            let movie = Diary(
+            let dairy = Diary(
                 ID: sqlite3_column_int(row, 0),
                 title: String(cString:sqlite3_column_text(row, 1)),
                 location: String(cString:sqlite3_column_text(row, 3)),
@@ -72,7 +108,7 @@ extension SQLite {
             )
             
             //add it to the result array
-            result += [movie]
+            result += [dairy]
         })
         return result
     }

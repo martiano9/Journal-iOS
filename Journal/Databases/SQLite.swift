@@ -220,6 +220,46 @@ class SQLite
         sqlite3_finalize(insertStatement)
     }
     
+    public func updateWithQuery(_ updateStatementQuery : String, bindingFunction:(_ updateStatement: OpaquePointer?)->())
+    {
+        /*
+         Similar to the CREATE statement, the INSERT statement needs the following SQLite functions to be called (note the addition of the binding function calls):
+         1.    sqlite3_prepare_v2()
+         2.    sqlite3_bind_***()
+         3.    sqlite3_step()
+         4.    sqlite3_finalize()
+         */
+        // First, we prepare the statement, and check that this was successful. The result will be a C-
+        // pointer to the statement:
+        var updateStatement: OpaquePointer? = nil
+        if sqlite3_prepare_v2(db, updateStatementQuery, -1, &updateStatement, nil) == SQLITE_OK
+        {
+            //handle bindings
+            bindingFunction(updateStatement)
+            
+            /* Using the pointer to the statement, we can call the sqlite3_step() function. Again, we only
+             step once. We check that this was successful */
+            //execute the statement
+            if sqlite3_step(updateStatement) == SQLITE_DONE
+            {
+                print("Successfully updated row.")
+            }
+            else
+            {
+                print("Could not update row.")
+                printCurrentSQLErrorMessage(db)
+            }
+        }
+        else
+        {
+            print("UPDATE statement could not be prepared.")
+            printCurrentSQLErrorMessage(db)
+        }
+        
+        //clean up
+        sqlite3_finalize(updateStatement)
+    }
+    
     //helper function to run Select statements
     //provide it with a function to do *something* with each returned row
     //(optionally) Provide it with a binding function for replacing the "?"'s in the WHERE clause
@@ -254,35 +294,35 @@ class SQLite
     
     //helper function to run update statements.
     //Provide it with a binding function for replacing the "?"'s in the WHERE clause
-    private func updateWithQuery(
-        _ updateStatementQuery : String,
+    public func deleteWithQuery(
+        _ deleteStatementQuery : String,
         bindingFunction: ((_ rowHandle: OpaquePointer?)->()))
     {
         //prepare the statement
-        var updateStatement: OpaquePointer? = nil
-        if sqlite3_prepare_v2(db, updateStatementQuery, -1, &updateStatement, nil) == SQLITE_OK
+        var deleteStatement: OpaquePointer? = nil
+        if sqlite3_prepare_v2(db, deleteStatementQuery, -1, &deleteStatement, nil) == SQLITE_OK
         {
             //do bindings
-            bindingFunction(updateStatement)
+            bindingFunction(deleteStatement)
             
             //execute
-            if sqlite3_step(updateStatement) == SQLITE_DONE
+            if sqlite3_step(deleteStatement) == SQLITE_DONE
             {
-                print("Successfully inserted row.")
+                print("Successfully deleted row.")
             }
             else
             {
-                print("Could not insert row.")
+                print("Could not delete row.")
                 printCurrentSQLErrorMessage(db)
             }
         }
         else
         {
-            print("UPDATE statement could not be prepared.")
+            print("DELETE statement could not be prepared.")
             printCurrentSQLErrorMessage(db)
         }
         //clean up
-        sqlite3_finalize(updateStatement)
+        sqlite3_finalize(deleteStatement)
     }
     
     /* --------------------------------*/
