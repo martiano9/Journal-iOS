@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class MyDiaryTableViewController: UITableViewController {
+class DiaryTableViewController: UITableViewController {
     var diaries = [Diary]()
     
     override func viewDidLoad() {
@@ -36,7 +36,6 @@ class MyDiaryTableViewController: UITableViewController {
     }
     
     // MARK: - Table View Delegate
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let diary = diaries[indexPath.row]
@@ -45,5 +44,24 @@ class MyDiaryTableViewController: UITableViewController {
             diaryCell.data = diary
         }
         return cell
+    }
+    
+    // Navigation Segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        if (segue.identifier == "ShowDetail") {
+            guard let detailViewController = segue.destination as? DiaryDetailViewController else {
+                fatalError("Unexpeted Error")
+            }
+            guard let selectedCell = sender as? DiaryTableViewCell else {
+                fatalError("Unexpeted Error")
+            }
+            guard let indexPath = tableView.indexPath(for: selectedCell) else {
+                fatalError("Unexpeted Error")
+            }
+            
+            let selectedDiary = diaries[indexPath.row]
+            detailViewController.diary = selectedDiary
+        }
     }
 }
