@@ -130,16 +130,16 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bfs-je-KCz">
-                                <rect key="frame" x="186" y="324" width="44" height="21"/>
+                                <rect key="frame" x="20" y="324" width="374" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3BW-ep-4SN">
-                                <rect key="frame" x="186" y="299" width="42" height="21"/>
+                                <rect key="frame" x="20" y="299" width="374" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -159,6 +159,12 @@
                             <constraint firstItem="LeM-8F-58x" firstAttribute="top" secondItem="u1e-aa-O3Q" secondAttribute="bottom" id="eKd-JB-qT1"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="Image" destination="LeM-8F-58x" id="gjF-6u-QUv"/>
+                        <outlet property="LblText" destination="EYl-Dz-BVo" id="T1c-2c-agT"/>
+                        <outlet property="LblTime" destination="bfs-je-KCz" id="L9i-Px-w6B"/>
+                        <outlet property="LblTitle" destination="3BW-ep-4SN" id="80u-NJ-4O7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oc5-yf-mZ1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
