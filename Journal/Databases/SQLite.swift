@@ -294,35 +294,35 @@ class SQLite
     
     //helper function to run update statements.
     //Provide it with a binding function for replacing the "?"'s in the WHERE clause
-    private func deleteWithQuery(
+    public func deleteWithQuery(
         _ deleteStatementQuery : String,
         bindingFunction: ((_ rowHandle: OpaquePointer?)->()))
     {
         //prepare the statement
         var deleteStatement: OpaquePointer? = nil
-        if sqlite3_prepare_v2(db, deleteStatementQuery, -1, &updateStatement, nil) == SQLITE_OK
+        if sqlite3_prepare_v2(db, deleteStatementQuery, -1, &deleteStatement, nil) == SQLITE_OK
         {
             //do bindings
-            bindingFunction(updateStatement)
+            bindingFunction(deleteStatement)
             
             //execute
-            if sqlite3_step(updateStatement) == SQLITE_DONE
+            if sqlite3_step(deleteStatement) == SQLITE_DONE
             {
-                print("Successfully inserted row.")
+                print("Successfully deleted row.")
             }
             else
             {
-                print("Could not insert row.")
+                print("Could not delete row.")
                 printCurrentSQLErrorMessage(db)
             }
         }
         else
         {
-            print("UPDATE statement could not be prepared.")
+            print("DELETE statement could not be prepared.")
             printCurrentSQLErrorMessage(db)
         }
         //clean up
-        sqlite3_finalize(updateStatement)
+        sqlite3_finalize(deleteStatement)
     }
     
     /* --------------------------------*/
