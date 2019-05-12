@@ -144,6 +144,8 @@ extension SQLite {
             
             //add it to the result array
             result = dairy
+        },bindingFunction: { (selectQuery) in
+            sqlite3_bind_int(selectQuery, 1, Id)
         })
         return result
         
