@@ -57,13 +57,56 @@ extension SQLite {
         })
     }
     
+    public func updateDiary(diary: Diary) {
+        let query = """
+            Update from Diary set
+                Title = ?, Text = ?, Location = ?, Mood = ?, Weather = ?, IsFavorite = ?, Image = ?,
+                Edited = CURRENT_TIMESTAMP where Id=?;
+        """
+        updateWithQuery(query, bindingFunction: { (statement) in
+            
+            sqlite3_bind_text(statement, 1, NSString(string:diary.title).utf8String, -1, nil)
+            sqlite3_bind_text(statement, 2, NSString(string:diary.text).utf8String, -1, nil)
+            sqlite3_bind_text(statement, 3, NSString(string:diary.location).utf8String, -1, nil)
+            sqlite3_bind_int(statement, 4, diary.mood)
+            sqlite3_bind_int(statement, 5, diary.weather)
+            sqlite3_bind_int(statement, 6, diary.isFavorite.intValue)
+            guard diary.image.withUnsafeBytes({ (bytes: UnsafePointer<UInt8>) -> Int32 in
+                sqlite3_bind_blob(statement, 7, bytes, Int32(diary.image.count), SQLITE_TRANSIENT)
+            }) == SQLITE_OK else {
+                throw SQLiteError.bind(message: errorMessage)
+            }
+            //sqlite3_bind_blob(statement, 7, diary.image)
+            sqlite3_bind_int(statement, 8, diary.ID)
+            //            sqlite3_bind_blob(insertStatement, 8, diary.image?.bytes, Int32(diary.image?.length), nil)
+        })
+    }
+    
+    public func deleteDiary(diary: Diary) {
+        let insertQuery = """
+            INSERT INTO Diary (
+                Id, Title, Text, Location, Mood, Weather, IsFavorite, Image)
+                VALUES (?, ?, ?, ?, ?, ? , ?, ?);
+        """
+        insertWithQuery(insertQuery, bindingFunction: { (insertStatement) in
+            sqlite3_bind_int(insertStatement, 1, diary.ID)
+            sqlite3_bind_text(insertStatement, 2, NSString(string:diary.title).utf8String, -1, nil)
+            sqlite3_bind_text(insertStatement, 3, NSString(string:diary.text).utf8String, -1, nil)
+            sqlite3_bind_text(insertStatement, 4, NSString(string:diary.location).utf8String, -1, nil)
+            sqlite3_bind_int(insertStatement, 5, diary.mood)
+            sqlite3_bind_int(insertStatement, 6, diary.weather)
+            sqlite3_bind_int(insertStatement, 7, diary.isFavorite.intValue)
+            //            sqlite3_bind_blob(insertStatement, 8, diary.image?.bytes, Int32(diary.image?.length), nil)
+        })
+    }
+    
     func selectAllDiaries() -> [Diary]
     {
         var result = [Diary]()
         let selectQuery = "SELECT * FROM Diary"
         selectWithQuery(selectQuery, eachRow: { (row) in
             //create a movie object from each result
-            let movie = Diary(
+            let dairy = Diary(
                 ID: sqlite3_column_int(row, 0),
                 title: String(cString:sqlite3_column_text(row, 1)),
                 location: String(cString:sqlite3_column_text(row, 3)),
@@ -72,7 +115,7 @@ extension SQLite {
             )
             
             //add it to the result array
-            result += [movie]
+            result += [dairy]
         })
         return result
     }
