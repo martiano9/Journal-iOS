@@ -24,10 +24,15 @@
 		E21ED1C9227ABAE1009A8F6B /* SQLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21ED1C8227ABAE1009A8F6B /* SQLite.swift */; };
 		E21ED1CC227ABB57009A8F6B /* SQLite+Diary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21ED1CB227ABB57009A8F6B /* SQLite+Diary.swift */; };
 		E21ED1CE227ADFA7009A8F6B /* Bool+Convert.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21ED1CD227ADFA7009A8F6B /* Bool+Convert.swift */; };
-		E21ED1D0227AEFA6009A8F6B /* MyDiaryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21ED1CF227AEFA6009A8F6B /* MyDiaryTableViewController.swift */; };
+		E21ED1D0227AEFA6009A8F6B /* DiaryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21ED1CF227AEFA6009A8F6B /* DiaryTableViewController.swift */; };
 		E21ED1D2227C192D009A8F6B /* Date+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21ED1D1227C192D009A8F6B /* Date+Format.swift */; };
 		E21ED1D4227C2210009A8F6B /* Mood.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21ED1D3227C2210009A8F6B /* Mood.swift */; };
 		E21ED1D6227C664A009A8F6B /* CreateDiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21ED1D5227C664A009A8F6B /* CreateDiaryViewController.swift */; };
+		E26E01D62283C080008F70A3 /* DiaryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26E01D52283C080008F70A3 /* DiaryDetailViewController.swift */; };
+		E2ED4BC5228705BB0095E523 /* CreateMoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2ED4BC4228705BB0095E523 /* CreateMoodViewController.swift */; };
+		E2F3F745228709C500001C2B /* UIImage+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F3F744228709C500001C2B /* UIImage+Color.swift */; };
+		E2F3F747228719CD00001C2B /* AspectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F3F746228719CD00001C2B /* AspectButton.swift */; };
+		E2F3F749228726A300001C2B /* ConfirmMoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F3F748228726A300001C2B /* ConfirmMoodViewController.swift */; };
 		E2FCA0D1227D4F3400B54A27 /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FCA0D0227D4F3400B54A27 /* PlaceholderTextView.swift */; };
 		E2FCA0D3227E78AC00B54A27 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FCA0D2227E78AC00B54A27 /* Weather.swift */; };
 /* End PBXBuildFile section */
@@ -52,10 +57,15 @@
 		E21ED1C8227ABAE1009A8F6B /* SQLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLite.swift; sourceTree = "<group>"; };
 		E21ED1CB227ABB57009A8F6B /* SQLite+Diary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SQLite+Diary.swift"; sourceTree = "<group>"; };
 		E21ED1CD227ADFA7009A8F6B /* Bool+Convert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bool+Convert.swift"; sourceTree = "<group>"; };
-		E21ED1CF227AEFA6009A8F6B /* MyDiaryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDiaryTableViewController.swift; sourceTree = "<group>"; };
+		E21ED1CF227AEFA6009A8F6B /* DiaryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryTableViewController.swift; sourceTree = "<group>"; };
 		E21ED1D1227C192D009A8F6B /* Date+Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Format.swift"; sourceTree = "<group>"; };
 		E21ED1D3227C2210009A8F6B /* Mood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mood.swift; sourceTree = "<group>"; };
 		E21ED1D5227C664A009A8F6B /* CreateDiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDiaryViewController.swift; sourceTree = "<group>"; };
+		E26E01D52283C080008F70A3 /* DiaryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryDetailViewController.swift; sourceTree = "<group>"; };
+		E2ED4BC4228705BB0095E523 /* CreateMoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMoodViewController.swift; sourceTree = "<group>"; };
+		E2F3F744228709C500001C2B /* UIImage+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Color.swift"; sourceTree = "<group>"; };
+		E2F3F746228719CD00001C2B /* AspectButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AspectButton.swift; sourceTree = "<group>"; };
+		E2F3F748228726A300001C2B /* ConfirmMoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmMoodViewController.swift; sourceTree = "<group>"; };
 		E2FCA0D0227D4F3400B54A27 /* PlaceholderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; };
 		E2FCA0D2227E78AC00B54A27 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -118,11 +128,14 @@
 		E208545D22558ED200B24D7F /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				E21ED1BE2279FD96009A8F6B /* MoodViewController.swift */,
-				E21ED1C02279FDC7009A8F6B /* FavoriteViewController.swift */,
-				E21ED1C22279FDF0009A8F6B /* SettingsViewController.swift */,
-				E21ED1CF227AEFA6009A8F6B /* MyDiaryTableViewController.swift */,
 				E21ED1D5227C664A009A8F6B /* CreateDiaryViewController.swift */,
+				E26E01D52283C080008F70A3 /* DiaryDetailViewController.swift */,
+				E21ED1CF227AEFA6009A8F6B /* DiaryTableViewController.swift */,
+				E21ED1C02279FDC7009A8F6B /* FavoriteViewController.swift */,
+				E21ED1BE2279FD96009A8F6B /* MoodViewController.swift */,
+				E21ED1C22279FDF0009A8F6B /* SettingsViewController.swift */,
+				E2ED4BC4228705BB0095E523 /* CreateMoodViewController.swift */,
+				E2F3F748228726A300001C2B /* ConfirmMoodViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -134,6 +147,7 @@
 				E21ED1BC2279FC0F009A8F6B /* BarButtonIcon.swift */,
 				E21ED1C4227AB2B6009A8F6B /* DiaryTableViewCell.swift */,
 				E2FCA0D0227D4F3400B54A27 /* PlaceholderTextView.swift */,
+				E2F3F746228719CD00001C2B /* AspectButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -145,6 +159,7 @@
 				E21ED1BA2279F607009A8F6B /* UIColor+Theme.swift */,
 				E21ED1CD227ADFA7009A8F6B /* Bool+Convert.swift */,
 				E21ED1D1227C192D009A8F6B /* Date+Format.swift */,
+				E2F3F744228709C500001C2B /* UIImage+Color.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -230,15 +245,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				E21ED1C5227AB2B6009A8F6B /* DiaryTableViewCell.swift in Sources */,
+				E2F3F747228719CD00001C2B /* AspectButton.swift in Sources */,
 				E21ED1BF2279FD96009A8F6B /* MoodViewController.swift in Sources */,
-				E21ED1D0227AEFA6009A8F6B /* MyDiaryTableViewController.swift in Sources */,
+				E21ED1D0227AEFA6009A8F6B /* DiaryTableViewController.swift in Sources */,
 				E21ED1C9227ABAE1009A8F6B /* SQLite.swift in Sources */,
+				E2F3F749228726A300001C2B /* ConfirmMoodViewController.swift in Sources */,
 				E2FCA0D3227E78AC00B54A27 /* Weather.swift in Sources */,
 				E208544D22558E6400B24D7F /* SecondViewController.swift in Sources */,
 				E21ED1D4227C2210009A8F6B /* Mood.swift in Sources */,
 				E208544922558E6400B24D7F /* AppDelegate.swift in Sources */,
 				E21ED1C32279FDF0009A8F6B /* SettingsViewController.swift in Sources */,
+				E2ED4BC5228705BB0095E523 /* CreateMoodViewController.swift in Sources */,
+				E2F3F745228709C500001C2B /* UIImage+Color.swift in Sources */,
 				E21ED1B92279F2DD009A8F6B /* UIColor+Hex.swift in Sources */,
+				E26E01D62283C080008F70A3 /* DiaryDetailViewController.swift in Sources */,
 				E21ED1C12279FDC7009A8F6B /* FavoriteViewController.swift in Sources */,
 				E21ED1CE227ADFA7009A8F6B /* Bool+Convert.swift in Sources */,
 				E21ED1BD2279FC0F009A8F6B /* BarButtonIcon.swift in Sources */,
