@@ -16,6 +16,7 @@ class DiaryTableViewCell: UITableViewCell {
     @IBOutlet weak var thumbnailImage: UIImageView!
     @IBOutlet weak var thumbnailAspectRatio: NSLayoutConstraint!
     @IBOutlet weak var thumbnailHeight: NSLayoutConstraint!
+    @IBOutlet weak var moodImage: UIButton!
     
     var data: Diary! {
         didSet {
@@ -27,6 +28,17 @@ class DiaryTableViewCell: UITableViewCell {
             } else {
                 self.thumbnailImage.removeConstraint(thumbnailAspectRatio)
                 self.thumbnailHeight.constant = 0
+            }
+            // Set mood Icon
+            let moodIdx: Int = Int(data.mood - 1)
+            moodImage.setImage(Mood.list[moodIdx].image, for: .normal)
+            moodImage.tintColor = .white
+            moodImage.layer.cornerRadius = 5
+            moodImage.backgroundColor = Mood.list[moodIdx].color
+            
+            // Title
+            if (data.title == "") {
+                lblTitle.text = "Feeling \(Mood.list[moodIdx].description)"
             }
         }
     }

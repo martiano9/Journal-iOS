@@ -25,10 +25,10 @@ extension SQLite {
         let createQuery = """
             CREATE TABLE Diary (
                   Id INTEGER PRIMARY KEY NOT NULL,
-                  Title VARCHAR(255) NOT NULL,
+                  Title VARCHAR(255),
                   Text TEXT,
                   Location VARCHAR(255),
-                  Mood INTEGER,
+                  Mood INTEGER NOT NULL,
                   Weather INTEGER,
                   IsFavorite BOOLEAN NOT NULL DEFAULT 0,
                   Image BLOB,

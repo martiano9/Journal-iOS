@@ -15,10 +15,15 @@ class ConfirmMoodViewController: UIViewController {
     
     private var _mood: Mood?
     var mood: Mood? {
-        set {
-            _mood = newValue
+        didSet {
+            if let desc = mood?.description {
+                moodLabel?.text = "I feel \(desc)"
+                moodLabel?.textColor = mood?.color
+                moodImage?.image = mood?.image
+                moodImage?.tintColor = mood?.color
+            }
+            
         }
-        get { return _mood }
     }
     
     override func viewDidLoad() {
