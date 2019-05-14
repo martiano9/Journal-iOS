@@ -24,28 +24,75 @@ class CreateDiaryViewController: UIViewController {
     @IBOutlet weak var headerTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var headerHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var moodImage: UIButton!
+    @IBOutlet weak var weatherImage: UIButton!
     private var label: UILabel!
     private var titleTextField: UITextField!
     
     private var headerHeightConstraint1: NSLayoutConstraint!
     
+    private var _mood: Mood?
+    var mood: Mood? {
+        set {
+            _mood = newValue
+        }
+        get { return _mood }
+    }
+    
+    private var _weather: Weather?
+    var weather: Weather? {
+        set {
+            _weather = newValue
+        }
+        get { return _weather }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Transparent navigation
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+//        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+//        self.navigationController?.navigationBar.shadowImage = UIImage()
         
         // Initial values
         timeLabel.text = Date().toDateString()
         
+        // Update mood
+        if (mood != nil) {
+            moodImage.setImage(mood?.image, for: .normal)
+            moodImage.tintColor = mood?.color
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
+    
     @IBAction func cancelPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func donePressed(_ sender: Any) {
+        //TODO: Save content here
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func weatherPressed(_ sender: Any) {
+        let actionSheet = UIAlertController(title: "My Action Sheet", message: "My Action Sheet Message", preferredStyle: .actionSheet)
+        for w in Weather.list {
+            let action = UIAlertAction(title: w.title, style: .default) { (action) in
+                self.weatherImage.setImage(w.image, for: .normal)
+                self.weather = w
+            }
+    
+            action.setValue(w.image, forKey: "image")
+            actionSheet.addAction(action)
+        }
+    
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil) //Will just dismiss the action sheet
+        actionSheet.addAction(cancelAction)
+        present(actionSheet, animated: true, completion: nil)
     }
 }
 

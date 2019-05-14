@@ -41,20 +41,13 @@ class CreateMoodViewController: UIViewController {
         moodId = sender.tag
     }
     
-
     // MARK: - Navigation
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-        let selectedMood = Mood.list[moodId-1]
         let vc = segue.destination as! ConfirmMoodViewController
-        vc.view.backgroundColor = UIColor.white
-        vc.moodLabel.text = "I feel \(selectedMood.description)"
-        vc.moodLabel.textColor = selectedMood.color
-        vc.moodImage.image = selectedMood.image
-        vc.moodImage.tintColor = selectedMood.color
+        vc.mood = Mood.list[moodId-1]
 //        confirmMoodVC.transitioningDelegate = self
 //        confirmMoodVC.modalPresentationStyle = .custom
     }

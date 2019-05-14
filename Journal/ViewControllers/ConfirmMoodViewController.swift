@@ -13,6 +13,14 @@ class ConfirmMoodViewController: UIViewController {
     @IBOutlet weak var moodImage: UIImageView!
     @IBOutlet weak var backButton: UIButton!
     
+    private var _mood: Mood?
+    var mood: Mood? {
+        set {
+            _mood = newValue
+        }
+        get { return _mood }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -26,24 +34,34 @@ class ConfirmMoodViewController: UIViewController {
         backButton.layer.cornerRadius = 16
         backButton.layer.borderWidth = 2
         backButton.layer.borderColor = UIColor.black.cgColor
+        
+        // Update mood
+        if (mood != nil) {
+            moodLabel.text = "I feel \(mood?.description ?? "")"
+            moodLabel.textColor = mood?.color
+            moodImage.image = mood?.image
+            moodImage.tintColor = mood?.color
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
     
-    @IBAction func backPressed(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
+    @IBAction func donePressed(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
-
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        if (segue.identifier == "AddNoteSegue") {
+            let vc = segue.destination as! CreateDiaryViewController
+            vc.mood = mood
+        }
     }
-    */
 
 }
