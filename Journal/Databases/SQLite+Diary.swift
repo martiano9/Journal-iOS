@@ -99,18 +99,56 @@ extension SQLite {
         let selectQuery = "SELECT * FROM Diary"
         selectWithQuery(selectQuery, eachRow: { (row) in
             //create a movie object from each result
-            let dairy = Diary(
+            var dairy = Diary(
                 ID: sqlite3_column_int(row, 0),
                 title: String(cString:sqlite3_column_text(row, 1)),
                 location: String(cString:sqlite3_column_text(row, 3)),
                 text: String(cString:sqlite3_column_text(row, 2)),
-                mood: sqlite3_column_int(row, 4)
+                mood: sqlite3_column_int(row, 4),
+                weather: sqlite3_column_int(row, 5),
+                isFavorite: (sqlite3_column_int(row, 6) as NSNumber).boolValue,
+                image: nil
             )
+            let len = sqlite3_column_bytes(row, 7)
+            let point = sqlite3_column_blob(row, 7)
+            if point != nil {
+                dairy.image = NSData(bytes: point, length: Int(len))
+            }
             
             //add it to the result array
             result += [dairy]
         })
         return result
+    }
+    
+    func selectDairyBy(Id:Int32) -> Diary? {
+        var result : Diary?
+        
+        let selectQuery = "SELECT * FROM Diary where Id=?"
+        selectWithQuery(selectQuery, eachRow: { (row) in
+            var dairy = Diary(
+                ID: sqlite3_column_int(row, 0),
+                title: String(cString:sqlite3_column_text(row, 1)),
+                location: String(cString:sqlite3_column_text(row, 3)),
+                text: String(cString:sqlite3_column_text(row, 2)),
+                mood: sqlite3_column_int(row, 4),
+                weather: sqlite3_column_int(row, 5),
+                isFavorite: (sqlite3_column_int(row, 6) as NSNumber).boolValue,
+                image: nil
+            )
+            let len = sqlite3_column_bytes(row, 7)
+            let point = sqlite3_column_blob(row, 7)
+            if point != nil {
+                dairy.image = NSData(bytes: point, length: Int(len))
+            }
+            
+            //add it to the result array
+            result = dairy
+        },bindingFunction: { (selectQuery) in
+            sqlite3_bind_int(selectQuery, 1, Id)
+        })
+        return result
+        
     }
 }
 

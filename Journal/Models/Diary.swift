@@ -20,15 +20,15 @@ struct Diary {
     var created: Date
     var edited: Date
     
-    init(ID: Int32, title: String, location: String, text: String, mood: Int32) {
+    init(ID: Int32, title: String, location: String, text: String, mood: Int32, weather: Int32 = 1, isFavorite: Bool = false, image:NSData? = nil) {
         self.ID = ID
         self.title = title
         self.location = location
         self.text = text
         self.mood = mood
-        self.image = nil
-        self.weather = 0
-        self.isFavorite = false
+        self.image = image
+        self.weather = weather
+        self.isFavorite = isFavorite
         self.created = Date()
         self.edited = Date()
     }
