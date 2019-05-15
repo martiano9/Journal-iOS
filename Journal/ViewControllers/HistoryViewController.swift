@@ -60,21 +60,26 @@ class HistoryViewController: UIViewController {
         
         chartView.legend.form = .line
         
-        sliderX.value = 100
+        sliderX.value = 30
         slidersValueChanged(nil)
         
         chartView.animate(xAxisDuration: 2.5)
     }
     
     func setDataCount(_ count: Int, range: UInt32) {
+        let history = SQLite.shared.diariesHistory()
+    
         let now = Date().timeIntervalSince1970
-        let hourSeconds: TimeInterval = 3600
+        let daySeconds: TimeInterval = 3600 * 24
         
-        let from = now - (Double(count) / 2) * hourSeconds
-        let to = now + (Double(count) / 2) * hourSeconds
+        let from = now - (Double(count) * daySeconds)
+        let to = now
         
-        let values = stride(from: from, to: to, by: hourSeconds).map { (x) -> ChartDataEntry in
-            let y = arc4random_uniform(range) + 1
+        let values = stride(from: from, to: to, by: daySeconds).map { (x) -> ChartDataEntry in
+            let dateStr = Date(timeIntervalSince1970: x).toDateString(withFormat: "dd-MM-yyyy")
+            let object = history.first(where: { $0.DateStr == dateStr })
+            
+            let y = object?.Average ?? 0
             return ChartDataEntry(x: x, y: Double(y))
         }
         
