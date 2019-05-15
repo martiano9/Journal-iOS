@@ -69,6 +69,10 @@ class DiaryTableViewController: UITableViewController {
         if (editingStyle == .delete) {
             tableView.beginUpdates()
             //            Names.removeAtIndex(indexPath!.row)
+            let diary = groups[indexPath.section].Diaries[indexPath.row]
+            SQLite.shared.deleteDiary(Id: diary.ID)
+            groups[indexPath.section].Diaries.remove(at: indexPath.row)
+            
             tableView.deleteRows(at: [indexPath as IndexPath], with: .fade)
             tableView.endUpdates()
         }
