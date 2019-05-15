@@ -392,17 +392,16 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8PR-No-u0T" customClass="BarChartView" customModule="Charts">
-                                <rect key="frame" x="5" y="405" width="404" height="200"/>
+                                <rect key="frame" x="54" y="405" width="355" height="200"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="jDi-Cf-rxh"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="tkL-i3-cee"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="8PR-No-u0T" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" constant="5" id="7jw-zI-CVK"/>
+                            <constraint firstItem="8PR-No-u0T" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" constant="54" id="7jw-zI-CVK"/>
                             <constraint firstItem="TP5-IC-AQg" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" constant="5" id="Ej7-1G-SuD"/>
                             <constraint firstItem="DIG-IL-Ufu" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" id="NIF-Uc-TJ8"/>
                             <constraint firstItem="W6y-Jc-OOF" firstAttribute="top" secondItem="TP5-IC-AQg" secondAttribute="bottom" constant="8" id="huF-Y4-tyi"/>
@@ -418,6 +417,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="History" id="Yje-aI-2Jh"/>
                     <connections>
+                        <outlet property="barChartView" destination="8PR-No-u0T" id="RR9-Zt-RoH"/>
                         <outlet property="chartView" destination="TP5-IC-AQg" id="9gB-mB-WRB"/>
                     </connections>
                 </viewController>

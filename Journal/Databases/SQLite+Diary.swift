@@ -136,6 +136,21 @@ extension SQLite {
         return result
     }
     
+    func diaryEntryHistory() -> [DiaryHistory] {
+        var result = [DiaryHistory]()
+        let q = "select Mood, COUNT(*) count, strftime('%d-%m-%Y', Created) dd from Diary where Created BETWEEN '2019-05-01' AND '2019-05-16' GROUP BY dd, Mood ORDER BY Created DESC"
+        selectWithQuery(q, eachRow: { (row) in
+            let history = DiaryHistory(
+                Max: sqlite3_column_int(row, 0),
+                Min: 0,
+                Count: sqlite3_column_int(row, 1),
+                Average: 0,
+                DateStr: String(cString:sqlite3_column_text(row, 2)))
+            result += [history]
+        })
+        return result
+    }
+    
     func diariesGroupByDate() -> [DiaryGroup]
     {
         var result = [DiaryGroup]()
