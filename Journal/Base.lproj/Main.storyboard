@@ -26,18 +26,18 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dMB-1Y-6f4">
-                                            <rect key="frame" x="16" y="15" width="382" height="35"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <rect key="frame" x="16" y="15" width="382" height="32"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                             <color key="textColor" red="0.42849245667457581" green="0.46889138221740723" blue="0.54903048276901245" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <nil key="highlightedColor"/>
                                             <size key="shadowOffset" width="0.0" height="0.0"/>
                                         </label>
                                     </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="backgroundColor" white="1" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="dMB-1Y-6f4" firstAttribute="top" secondItem="2Mz-ue-sjD" secondAttribute="top" constant="15" id="C1x-cO-zty"/>
                                         <constraint firstItem="dMB-1Y-6f4" firstAttribute="leading" secondItem="2Mz-ue-sjD" secondAttribute="leading" constant="16" id="any-3K-Glr"/>
-                                        <constraint firstAttribute="bottom" secondItem="dMB-1Y-6f4" secondAttribute="bottom" constant="5" id="bmK-SJ-D0Z"/>
+                                        <constraint firstAttribute="bottom" secondItem="dMB-1Y-6f4" secondAttribute="bottom" constant="8" id="bmK-SJ-D0Z"/>
                                         <constraint firstAttribute="trailing" secondItem="dMB-1Y-6f4" secondAttribute="trailing" constant="16" id="yyM-3i-6VA"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -126,6 +126,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="My Diary" id="hJp-2R-LOR">
                         <barButtonItem key="rightBarButtonItem" image="plus_math" id="3CP-vm-lQl">
+                            <color key="tintColor" red="0.13725490200000001" green="0.33333333329999998" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
                                 <segue destination="V0F-vO-f1K" kind="presentation" id="mjK-H9-6Lz"/>
                             </connections>
@@ -178,6 +179,7 @@
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" red="0.13725490200000001" green="0.33333333329999998" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="LeM-8F-58x" firstAttribute="trailing" secondItem="Pbo-YO-u7T" secondAttribute="trailing" id="7aK-Gv-gwq"/>
                             <constraint firstItem="LeM-8F-58x" firstAttribute="leading" secondItem="Pbo-YO-u7T" secondAttribute="leading" id="FWm-nV-mDG"/>
@@ -371,6 +373,20 @@
                                     <constraint firstAttribute="width" secondItem="TP5-IC-AQg" secondAttribute="height" multiplier="16:9" id="sNd-pm-Ioh"/>
                                 </constraints>
                             </view>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="W6Q-ri-rL3">
+                                <rect key="frame" x="148" y="476" width="118" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="slidersValueChanged:" destination="8rJ-Kc-sve" eventType="valueChanged" id="53f-JF-Y0k"/>
+                                </connections>
+                            </slider>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WAE-6T-Wr3">
+                                <rect key="frame" x="159" y="530" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -381,7 +397,9 @@
                     </view>
                     <navigationItem key="navigationItem" title="History" id="Yje-aI-2Jh"/>
                     <connections>
-                        <outlet property="lineChartView" destination="TP5-IC-AQg" id="kfl-JW-9FP"/>
+                        <outlet property="chartView" destination="TP5-IC-AQg" id="9gB-mB-WRB"/>
+                        <outlet property="sliderTextX" destination="WAE-6T-Wr3" id="fYB-dE-RMv"/>
+                        <outlet property="sliderX" destination="W6Q-ri-rL3" id="LIB-Mr-kOp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
@@ -397,8 +415,9 @@
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="tintColor" red="0.25455120209999998" green="0.57308030129999998" blue="0.53725445270000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="tintColor" red="0.13725490196078433" green="0.33333333333333331" blue="0.82352941176470584" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" red="0.13725490200000001" green="0.33333333329999998" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </tabBar>
                     <connections>
                         <segue destination="ghe-ep-wg0" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
