@@ -21,3 +21,18 @@ public class DateValueFormatter: NSObject, IAxisValueFormatter {
         return dateFormatter.string(from: Date(timeIntervalSince1970: value))
     }
 }
+
+public class MoodValueFormatter: NSObject, IAxisValueFormatter {
+    private let dateFormatter = DateFormatter()
+    
+    override init() {
+        super.init()
+    }
+    
+    public func stringForValue(_ value: Double, axis: AxisBase?) -> String {
+        if (value == 0) {
+            return ""
+        }
+        return Mood.list[Int(value)-1].description
+    }
+}

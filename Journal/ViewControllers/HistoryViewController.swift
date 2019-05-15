@@ -23,87 +23,86 @@ class HistoryViewController: UIViewController {
         self.title = "History"
         
         chartView.delegate = self
-        
+
         chartView.chartDescription?.enabled = false
-        
-        chartView.dragEnabled = false
+
+        chartView.dragYEnabled = false
+        chartView.dragXEnabled = true
         chartView.setScaleEnabled(false)
         chartView.pinchZoomEnabled = false
         chartView.highlightPerDragEnabled = false
-        
-        chartView.backgroundColor = #colorLiteral(red: 0.9560336471, green: 0.9608393312, blue: 0.9693661332, alpha: 1)
-        
+
+        chartView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+
         chartView.legend.enabled = true
-        
+
         let xAxis = chartView.xAxis
         xAxis.labelPosition = .bottom
-        xAxis.labelFont = .systemFont(ofSize: 10, weight: .light)
-        xAxis.labelTextColor = .red
-        xAxis.drawAxisLineEnabled = false
+        xAxis.labelFont = .systemFont(ofSize: 12, weight: .medium)
+        xAxis.labelTextColor = #colorLiteral(red: 0.4392156863, green: 0.4392156863, blue: 0.4392156863, alpha: 1)
+        xAxis.drawAxisLineEnabled = true
         xAxis.drawGridLinesEnabled = false
         xAxis.centerAxisLabelsEnabled = true
-        xAxis.granularity = 3600
+        xAxis.granularity = 1
         xAxis.valueFormatter = DateValueFormatter()
-        
+
         let leftAxis = chartView.leftAxis
         leftAxis.labelPosition = .outsideChart
-        leftAxis.labelFont = .systemFont(ofSize: 12, weight: .light)
+        leftAxis.labelFont = .systemFont(ofSize: 12, weight: .medium)
         leftAxis.drawGridLinesEnabled = true
         leftAxis.granularityEnabled = true
         leftAxis.axisMinimum = 0
-        leftAxis.axisMaximum = 6
+        leftAxis.axisMaximum = 5.5
+        leftAxis.gridLineWidth = 0.5
         leftAxis.yOffset = 0
-        leftAxis.labelTextColor = .blue
-        
-        
+        leftAxis.labelTextColor = #colorLiteral(red: 0.4392156863, green: 0.4392156863, blue: 0.4392156863, alpha: 1)
+        leftAxis.valueFormatter = MoodValueFormatter()
+
+
         chartView.rightAxis.enabled = false
+        chartView.legend.form = .square
+
+        chartView.animate(xAxisDuration: 2.0)
         
-        chartView.legend.form = .line
-        
-        sliderX.value = 30
-        slidersValueChanged(nil)
-        
-        chartView.animate(xAxisDuration: 2.5)
+        generateCombinedData()
     }
     
-    func setDataCount(_ count: Int, range: UInt32) {
+    func generateCombinedData() {
+        // Get history data from database
         let history = SQLite.shared.diariesHistory()
-    
+        
         let now = Date().timeIntervalSince1970
         let daySeconds: TimeInterval = 3600 * 24
         
-        let from = now - (Double(count) * daySeconds)
-        let to = now
+        let from = now - (Double(lastPeriodLength) * daySeconds)
+        let to = now + daySeconds * 2
         
-        let values = stride(from: from, to: to, by: daySeconds).map { (x) -> ChartDataEntry in
+        // Data
+        var lineDataEntries = [ChartDataEntry]()
+        var barDataEntries = [BarChartDataEntry]()
+        for x in stride(from: from, to: to, by: daySeconds) {
             let dateStr = Date(timeIntervalSince1970: x).toDateString(withFormat: "dd-MM-yyyy")
             let object = history.first(where: { $0.DateStr == dateStr })
             
-            let y = object?.Average ?? 0
-            return ChartDataEntry(x: x, y: Double(y))
+            let avg = object?.Average ?? 0
+            let count = object?.Count ?? 0
+            
+            lineDataEntries.append(ChartDataEntry(x: x, y: Double(avg)))
+            barDataEntries.append(BarChartDataEntry(x: x, y: Double(count)))
         }
         
-        let set1 = LineChartDataSet(entries: values, label: "Mood")
+        // Generate line data
+        let set1 = LineChartDataSet(entries: lineDataEntries, label: "Mood")
         set1.axisDependency = .left
-        set1.setColor(#colorLiteral(red: 0.001910516527, green: 0.3388788402, blue: 0.8543916345, alpha: 1))
+        set1.setColor(#colorLiteral(red: 0.5568627451, green: 0.6901960784, blue: 0.1294117647, alpha: 1))
         set1.lineWidth = 2
+        set1.setCircleColor(#colorLiteral(red: 0.5568627451, green: 0.6901960784, blue: 0.1294117647, alpha: 1))
         set1.drawCirclesEnabled = false
         set1.drawValuesEnabled = false
-        set1.fillAlpha = 0.26
-        set1.fillColor = .blue
-        set1.highlightColor = .red
         set1.drawCircleHoleEnabled = false
         
-        let data = LineChartData(dataSet: set1)
-        data.setValueTextColor(.red)
-        data.setValueFont(.systemFont(ofSize: 9, weight: .light))
-        
-        chartView.data = data
-    }
-    
-    @IBAction func slidersValueChanged(_ sender: Any?) {
-        sliderTextX.text = "\(Int(sliderX.value))"
-        self.setDataCount(Int(sliderX.value), range: 5)
+        let lineChartData = LineChartData(dataSet: set1)
+        chartView.data = lineChartData
     }
 }
 

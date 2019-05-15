@@ -124,7 +124,7 @@ extension SQLite {
     
     func diariesHistory() -> [DiaryHistory] {
         var result = [DiaryHistory]()
-        let q = "SELECT AVG(Mood) average, MAX(Mood) max, MIN(Mood) min, COUNT(*) count, strftime('%d-%m-%Y', Created) dd FROM Diary WHERE Created BETWEEN '2019-05-01' AND '2019-05-14' GROUP BY dd ORDER BY Created DESC"
+        let q = "SELECT AVG(Mood) average, MAX(Mood) max, MIN(Mood) min, COUNT(*) count, strftime('%d-%m-%Y', Created) dd FROM Diary WHERE Created BETWEEN '2019-05-01' AND '2019-05-16' GROUP BY dd ORDER BY Created DESC"
         selectWithQuery(q, eachRow: { (row) in
             let history = DiaryHistory(
                 Max: sqlite3_column_int(row, 1),
