@@ -121,9 +121,12 @@ extension SQLite {
         return result
     }
     
-    func diariesHistory() -> [DiaryHistory] {
+    func diariesHistory(period: Int = 30) -> [DiaryHistory] {
+        let today = Date.tomorrow //Jun 21, 2017, 7:18 PM
+        let thirtyDaysBeforeToday = Calendar.current.date(byAdding: .day, value: -(period+1), to: today)!
+        
         var result = [DiaryHistory]()
-        let q = "SELECT AVG(Mood) average, MAX(Mood) max, MIN(Mood) min, COUNT(*) count, strftime('%d-%m-%Y', Created) dd FROM Diary WHERE Created BETWEEN '2019-05-01' AND '2019-05-16' GROUP BY dd ORDER BY Created DESC"
+        let q = "SELECT AVG(Mood) average, MAX(Mood) max, MIN(Mood) min, COUNT(*) count, strftime('%d-%m-%Y', Created) dd FROM Diary WHERE Created BETWEEN '\(thirtyDaysBeforeToday.toDateString(withFormat: "yyyy-MM-dd"))' AND '\(today.toDateString(withFormat: "yyyy-MM-dd"))' GROUP BY dd ORDER BY Created DESC"
         selectWithQuery(q, eachRow: { (row) in
             let history = DiaryHistory(
                 Max: sqlite3_column_int(row, 1),
@@ -136,9 +139,12 @@ extension SQLite {
         return result
     }
     
-    func diaryEntryHistory() -> [DiaryHistory] {
+    func diaryEntryHistory(period: Int = 30) -> [DiaryHistory] {
+        let today = Date.tomorrow //Jun 21, 2017, 7:18 PM
+        let thirtyDaysBeforeToday = Calendar.current.date(byAdding: .day, value: -(period+1), to: today)!
+        
         var result = [DiaryHistory]()
-        let q = "select Mood, COUNT(*) count, strftime('%d-%m-%Y', Created) dd from Diary where Created BETWEEN '2019-05-01' AND '2019-05-16' GROUP BY dd, Mood ORDER BY Created DESC"
+        let q = "select Mood, COUNT(*) count, strftime('%d-%m-%Y', Created) dd from Diary where Created BETWEEN '\(thirtyDaysBeforeToday.toDateString(withFormat: "yyyy-MM-dd"))' AND '\(today.toDateString(withFormat: "yyyy-MM-dd"))' GROUP BY dd, Mood ORDER BY Created DESC"
         selectWithQuery(q, eachRow: { (row) in
             let history = DiaryHistory(
                 Max: sqlite3_column_int(row, 0),

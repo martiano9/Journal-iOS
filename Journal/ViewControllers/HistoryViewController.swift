@@ -13,6 +13,7 @@ class HistoryViewController: UIViewController {
 
     @IBOutlet var chartView: LineChartView!
     @IBOutlet var barChartView: BarChartView!
+    @IBOutlet weak var titleButton: UIButton!
     
     var lastPeriodLength: Int = 30
     
@@ -26,7 +27,31 @@ class HistoryViewController: UIViewController {
         generateLineData()
         
         setupBarChart()
-        setChartData(count: 30, range: 100)
+        setChartData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        generateLineData()
+        setChartData()
+    }
+    
+    @IBAction func periodPressed(_ sender: Any) {
+        let actionSheet = UIAlertController(title: "Date Range", message: "Select history range", preferredStyle: .actionSheet)
+        for w in DateRange.list {
+            let action = UIAlertAction(title: w.string, style: .default) { (action) in
+                self.lastPeriodLength = w.value
+                self.titleButton.setTitle(w.string + " ", for: .normal)
+                self.generateLineData()
+                self.setChartData()
+            }
+            actionSheet.addAction(action)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil) //Will just dismiss the action sheet
+        actionSheet.addAction(cancelAction)
+        present(actionSheet, animated: true, completion: nil)
     }
     
     func setupBarChart() {
@@ -40,46 +65,50 @@ class HistoryViewController: UIViewController {
         barChartView.highlightFullBarEnabled = false
         
         let leftAxis = barChartView.leftAxis
-        leftAxis.axisMinimum = 0
-        leftAxis.granularityEnabled = true
-        leftAxis.granularity = 1.0
-        leftAxis.labelTextColor = #colorLiteral(red: 0.3102914691, green: 0.3102995157, blue: 0.3102951646, alpha: 1)
+        leftAxis.labelPosition = .outsideChart
         leftAxis.labelFont = .systemFont(ofSize: 12, weight: .medium)
+        leftAxis.drawGridLinesEnabled = true
+        leftAxis.granularityEnabled = true
+        leftAxis.axisMinimum = 0
         leftAxis.gridLineWidth = 0.5
-        
+        leftAxis.labelTextColor = #colorLiteral(red: 0.3102914691, green: 0.3102995157, blue: 0.3102951646, alpha: 1)
+        leftAxis.axisLineWidth = 1
         
         barChartView.rightAxis.enabled = false
         
         let xAxis = barChartView.xAxis
         xAxis.labelPosition = .bottom
-        xAxis.valueFormatter = DateValueFormatter()
-        xAxis.drawLabelsEnabled = false
-        xAxis.drawGridLinesEnabled = false
         xAxis.labelFont = .systemFont(ofSize: 12, weight: .medium)
         xAxis.labelTextColor = #colorLiteral(red: 0.3102914691, green: 0.3102995157, blue: 0.3102951646, alpha: 1)
+        xAxis.drawAxisLineEnabled = true
+        xAxis.drawGridLinesEnabled = false
+        xAxis.centerAxisLabelsEnabled = true
+        xAxis.granularity = 1
+        xAxis.valueFormatter = DayFromFormatter()
         
         let l = barChartView.legend
         l.horizontalAlignment = .center
         l.verticalAlignment = .bottom
         l.orientation = .horizontal
+        l.yEntrySpace = 5
         l.drawInside = false
         l.form = .square
         l.formToTextSpace = 4
         l.xEntrySpace = 6
     }
     
-    func setChartData(count: Int, range: UInt32) {
+    func setChartData() {
         // Get history data from database
-        let history = SQLite.shared.diaryEntryHistory()
+        let history = SQLite.shared.diaryEntryHistory(period: lastPeriodLength)
         
         let now = Date().timeIntervalSince1970
         let daySeconds: TimeInterval = 3600 * 24
         
         let from = now - (Double(lastPeriodLength) * daySeconds)
-        let to = now + daySeconds * 2
+        let to = now + daySeconds
         
         var barDataEntries = [BarChartDataEntry]()
-        var count = 0.0
+        var count = Double(-lastPeriodLength)
         for x in stride(from: from, to: to, by: daySeconds) {
             let dateStr = Date(timeIntervalSince1970: x).toDateString(withFormat: "dd-MM-yyyy")
             let object = history.filter{ $0.DateStr == dateStr }
@@ -104,12 +133,12 @@ class HistoryViewController: UIViewController {
         set.stackLabels = Mood.list.map { $0.description }
         
         let data = BarChartData(dataSet: set)
-        data.setValueFont(.systemFont(ofSize: 7, weight: .light))
-        data.setValueTextColor(.white)
         data.setDrawValues(false)
         
         barChartView.fitBars = true
         barChartView.data = data
+        
+//        barChartView.animate(xAxisDuration: 2.0)
     }
     
     func setupLineChart() {
@@ -133,7 +162,7 @@ class HistoryViewController: UIViewController {
         xAxis.drawGridLinesEnabled = false
         xAxis.centerAxisLabelsEnabled = true
         xAxis.granularity = 1
-        xAxis.valueFormatter = DateValueFormatter()
+        xAxis.valueFormatter = DayFromFormatter()
         
         let leftAxis = chartView.leftAxis
         leftAxis.labelPosition = .outsideChart
@@ -143,38 +172,40 @@ class HistoryViewController: UIViewController {
         leftAxis.axisMinimum = 0
         leftAxis.axisMaximum = 5.5
         leftAxis.gridLineWidth = 0.5
-        leftAxis.yOffset = 0
         leftAxis.labelTextColor = #colorLiteral(red: 0.3102914691, green: 0.3102995157, blue: 0.3102951646, alpha: 1)
         leftAxis.valueFormatter = MoodValueFormatter()
+        leftAxis.axisLineWidth = 1
         
         
         chartView.rightAxis.enabled = false
         chartView.legend.form = .square
         chartView.legend.horizontalAlignment = .center
         
-        chartView.animate(xAxisDuration: 2.0)
+//        chartView.animate(xAxisDuration: 2.0)
     }
     
     func generateLineData() {
         // Get history data from database
-        let history = SQLite.shared.diariesHistory()
+        let history = SQLite.shared.diariesHistory(period: lastPeriodLength)
         
         let now = Date().timeIntervalSince1970
         let daySeconds: TimeInterval = 3600 * 24
         
         let from = now - (Double(lastPeriodLength) * daySeconds)
-        let to = now + daySeconds * 2
+        let to = now + daySeconds
         
         // Data
         var lineDataEntries = [ChartDataEntry]()
 
+        var count = Double(-lastPeriodLength)
         for x in stride(from: from, to: to, by: daySeconds) {
             let dateStr = Date(timeIntervalSince1970: x).toDateString(withFormat: "dd-MM-yyyy")
             let object = history.first(where: { $0.DateStr == dateStr })
             
             let avg = object?.Average ?? 0
             
-            lineDataEntries.append(ChartDataEntry(x: x, y: Double(avg)))
+            lineDataEntries.append(ChartDataEntry(x: count, y: Double(avg)))
+            count += 1.0
         }
         
         // Generate line data
