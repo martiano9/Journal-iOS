@@ -26,6 +26,7 @@ class CreateDiaryViewController: UIViewController {
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var moodImage: UIButton!
     @IBOutlet weak var weatherImage: UIButton!
+    @IBOutlet weak var titleText: UITextField!
     private var label: UILabel!
     private var titleTextField: UITextField!
     
@@ -76,11 +77,10 @@ class CreateDiaryViewController: UIViewController {
     @IBAction func donePressed(_ sender: Any) {
         //TODO: Save content here
         
-        if let m=mood?.value {
-            SQLite.shared.insertDiary(diary: Diary(ID: 11, title: "test", location: "test"
-                ,text: "test", mood: m, weather: 1, isFavorite: false))
+        SQLite.shared.insertDiary(diary: Diary(ID: 0, title: titleText?.text ?? "", location: ""
+                ,text: textView?.text ?? "", mood: mood?.value ?? 1, weather: weather?.code ?? 1, isFavorite: false))
             
-        }
+        
         self.dismiss(animated: true, completion: nil)
     }
     
