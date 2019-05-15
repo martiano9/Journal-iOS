@@ -71,7 +71,14 @@ class CreateDiaryViewController: UIViewController {
     }
     
     @IBAction func cancelPressed(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        if self.presentingViewController != nil {
+            self.dismiss(animated: true, completion: {
+                self.navigationController!.popToRootViewController(animated: true)
+            })
+        }
+        else {
+            self.navigationController?.popToRootViewController(animated: true)
+        }
     }
     
     @IBAction func donePressed(_ sender: Any) {

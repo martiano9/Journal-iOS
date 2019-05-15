@@ -189,6 +189,9 @@
                     <navigationItem key="navigationItem" title="Title" id="PUg-6j-2Rf">
                         <barButtonItem key="rightBarButtonItem" image="edit_row" style="plain" id="wBu-z3-9eN">
                             <color key="tintColor" red="0.13725490200000001" green="0.33333333329999998" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <connections>
+                                <segue destination="UMP-21-x2A" kind="show" id="sPr-3a-Kq1"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -227,7 +230,7 @@
                                         <color key="backgroundColor" red="0.99215686270000003" green="0.58039215690000001" blue="0.039215686270000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="7MO-HI-iSK" secondAttribute="bottom" id="D4P-Zm-nUE"/>
-                                            <constraint firstItem="7MO-HI-iSK" firstAttribute="top" secondItem="PiU-19-LE0" secondAttribute="top" id="NSV-AN-42C"/>
+                                            <constraint firstItem="7MO-HI-iSK" firstAttribute="top" secondItem="PiU-19-LE0" secondAttribute="top" id="E6g-TK-0VA"/>
                                             <constraint firstItem="7MO-HI-iSK" firstAttribute="leading" secondItem="PiU-19-LE0" secondAttribute="leading" id="TOh-17-Vux"/>
                                             <constraint firstAttribute="trailing" secondItem="7MO-HI-iSK" secondAttribute="trailing" id="WMZ-iE-Ajv"/>
                                             <constraint firstAttribute="height" constant="230" id="p7h-9s-Il5"/>
@@ -847,5 +850,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="8FH-8a-9qO"/>
+        <segue reference="2HW-Kd-jmB"/>
     </inferredMetricsTieBreakers>
 </document>

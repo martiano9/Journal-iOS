@@ -14,11 +14,20 @@ class DiaryDetailViewController: UIViewController {
     @IBOutlet weak var LblTitle: UILabel!
     @IBOutlet weak var LblText: UITextView!
     @IBOutlet weak var Image: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        LblTitle.text = diary?.title
+        if (diary?.title == "" && diary != nil) {
+            let moodIdx: Int = Int(diary!.mood - 1)
+            self.title = "Feeling \(Mood.list[moodIdx].description)"
+            LblTitle.text = "Feeling \(Mood.list[moodIdx].description)"
+        } else {
+            self.title = diary?.title
+            LblTitle.text = diary?.title
+        }
+        
         LblTime.text=diary?.created.toString()
         LblText.text=diary?.text
         if let imageData = diary?.image {

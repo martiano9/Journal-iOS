@@ -17,6 +17,7 @@ class CreateMoodViewController: UIViewController {
         super.viewDidLoad()
 
         // Transparent navigation
+        self.navigationController?.navigationBar.prefersLargeTitles = false
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         UIApplication.shared.statusBarView?.backgroundColor = .white
