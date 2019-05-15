@@ -32,4 +32,17 @@ struct Diary {
         self.created = created ?? Date()
         self.edited = Date()
     }
+    init(mood: Int32) {
+        self.ID = -1
+        self.title = ""
+        self.location = ""
+        self.text = ""
+        self.mood = mood
+        self.image = nil
+        self.weather = -1
+        self.isFavorite = false
+        
+        self.created = Date()
+        self.edited = Date()
+    }
 }

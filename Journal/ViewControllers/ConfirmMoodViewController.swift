@@ -54,6 +54,14 @@ class ConfirmMoodViewController: UIViewController {
     }
     
     @IBAction func donePressed(_ sender: Any) {
+        
+        // save journal
+        if let m=mood?.value {
+            //SQLite.shared.insertDiary(diary: Diary(ID: 11, title: "test", location: "test"
+            //    ,text: "test", mood: m, weather: 1, isFavorite: false))
+            SQLite.shared.insertDiary(diary: Diary(mood: m))
+        }
+        
         self.dismiss(animated: true, completion: nil)
     }
     

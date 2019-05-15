@@ -41,19 +41,18 @@ extension SQLite {
     
     public func insertDiary(diary: Diary) {
         let insertQuery = """
-            INSERT INTO Diary (
-                Id, Title, Text, Location, Mood, Weather, IsFavorite, Image, Created)
-                VALUES (?, ?, ?, ?, ?, ? , ?, ?, ?);
+                INSERT INTO Diary (Title, Text, Location, Mood, Weather, IsFavorite, Created)
+                VALUES (?,?,?,?,?,?,?)
         """
         insertWithQuery(insertQuery, bindingFunction: { (insertStatement) in
-            sqlite3_bind_int(insertStatement, 1, diary.ID)
-            sqlite3_bind_text(insertStatement, 2, NSString(string:diary.title).utf8String, -1, nil)
-            sqlite3_bind_text(insertStatement, 3, NSString(string:diary.text).utf8String, -1, nil)
-            sqlite3_bind_text(insertStatement, 4, NSString(string:diary.location).utf8String, -1, nil)
-            sqlite3_bind_int(insertStatement, 5, diary.mood)
-            sqlite3_bind_int(insertStatement, 6, diary.weather)
-            sqlite3_bind_int(insertStatement, 7, diary.isFavorite.intValue)
-            sqlite3_bind_text(insertStatement, 9, NSString(string:diary.created.toDateString()).utf8String, -1, nil)
+            //sqlite3_bind_int(insertStatement, 1, diary.ID)
+            sqlite3_bind_text(insertStatement, 1, NSString(string:diary.title).utf8String, -1, nil)
+            sqlite3_bind_text(insertStatement, 2, NSString(string:diary.text).utf8String, -1, nil)
+            sqlite3_bind_text(insertStatement, 3, NSString(string:diary.location).utf8String, -1, nil)
+            sqlite3_bind_int(insertStatement, 4, diary.mood)
+            sqlite3_bind_int(insertStatement, 5, diary.weather)
+            sqlite3_bind_int(insertStatement, 6, diary.isFavorite.intValue)
+            sqlite3_bind_text(insertStatement, 7, NSString(string:diary.created.toDateString()).utf8String, -1, nil)
 //            sqlite3_bind_blob(insertStatement, 8, diary.image?.bytes, Int32(diary.image?.length), nil)
         })
     }

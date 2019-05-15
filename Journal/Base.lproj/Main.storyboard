@@ -346,6 +346,7 @@
                         <outlet property="moodImage" destination="ssM-Bx-Ihz" id="7Hs-2A-t2r"/>
                         <outlet property="textView" destination="79b-Or-Nh5" id="MeC-wC-gOf"/>
                         <outlet property="timeLabel" destination="n0c-qN-Q21" id="yVe-Z6-f7Z"/>
+                        <outlet property="titleText" destination="qpK-ci-sg2" id="2bH-zd-orX"/>
                         <outlet property="weatherImage" destination="1l2-T3-QVS" id="OYE-LR-lM1"/>
                         <outletCollection property="scrollView" destination="SjE-2o-8Ie" collectionClass="NSMutableArray" id="bgC-XI-whe"/>
                     </connections>

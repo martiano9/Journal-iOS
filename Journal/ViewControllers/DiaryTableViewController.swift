@@ -27,6 +27,12 @@ class DiaryTableViewController: UITableViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        groups = SQLite.shared.diariesGroupByDate()
+        tableView.reloadData()
+    }
+    
     // MARK: - Table View Datasource
     override func numberOfSections(in tableView: UITableView) -> Int {
         return groups.count
