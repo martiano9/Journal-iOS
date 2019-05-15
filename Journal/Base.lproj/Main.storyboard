@@ -360,7 +360,7 @@
             </objects>
             <point key="canvasLocation" x="6368.115942028986" y="352.90178571428572"/>
         </scene>
-        <!--History View Controller-->
+        <!--History-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
                 <viewController id="8rJ-Kc-sve" customClass="HistoryViewController" customModule="Journal" customModuleProvider="target" sceneMemberID="viewController">
@@ -373,40 +373,54 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TP5-IC-AQg" customClass="LineChartView" customModule="Charts">
-                                <rect key="frame" x="5" y="129" width="399" height="230"/>
+                                <rect key="frame" x="5" y="181" width="399" height="230"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="230" id="86f-ko-8Dh"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mood" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DIG-IL-Ufu">
-                                <rect key="frame" x="20" y="108" width="374" height="21"/>
+                                <rect key="frame" x="20" y="160" width="374" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <color key="textColor" red="0.090196078431372548" green="0.16862745098039217" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Entries" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W6y-Jc-OOF">
-                                <rect key="frame" x="20" y="367" width="374" height="21"/>
+                                <rect key="frame" x="20" y="419" width="374" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <color key="textColor" red="0.090196078430000007" green="0.16862745100000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8PR-No-u0T" customClass="BarChartView" customModule="Charts">
-                                <rect key="frame" x="54" y="388" width="350" height="230"/>
+                                <rect key="frame" x="54" y="440" width="350" height="230"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="230" id="jDi-Cf-rxh"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NaA-2c-dpE">
+                                <rect key="frame" x="284" y="161.5" width="110" height="18"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                <color key="tintColor" red="0.42745098040000001" green="0.47058823529999999" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="Last 30 days " image="icons8-sort_down">
+                                    <color key="titleColor" red="0.42745098040000001" green="0.47058823529999999" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="periodPressed:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="Jne-Np-rnD"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="8PR-No-u0T" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" constant="54" id="7jw-zI-CVK"/>
                             <constraint firstItem="TP5-IC-AQg" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" constant="5" id="Ej7-1G-SuD"/>
+                            <constraint firstItem="NaA-2c-dpE" firstAttribute="trailing" secondItem="QS5-Rx-YEW" secondAttribute="trailingMargin" id="KPy-aS-Gvw"/>
                             <constraint firstItem="DIG-IL-Ufu" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" id="NIF-Uc-TJ8"/>
                             <constraint firstItem="W6y-Jc-OOF" firstAttribute="top" secondItem="TP5-IC-AQg" secondAttribute="bottom" constant="8" id="huF-Y4-tyi"/>
                             <constraint firstItem="DIG-IL-Ufu" firstAttribute="trailing" secondItem="QS5-Rx-YEW" secondAttribute="trailingMargin" id="omJ-aV-5n4"/>
                             <constraint firstItem="W6y-Jc-OOF" firstAttribute="trailing" secondItem="QS5-Rx-YEW" secondAttribute="trailingMargin" id="pCR-S3-HT0"/>
+                            <constraint firstItem="NaA-2c-dpE" firstAttribute="centerY" secondItem="DIG-IL-Ufu" secondAttribute="centerY" id="r74-mn-e9P"/>
                             <constraint firstItem="8PR-No-u0T" firstAttribute="top" secondItem="W6y-Jc-OOF" secondAttribute="bottom" id="sTs-c5-Puk"/>
                             <constraint firstAttribute="trailing" secondItem="TP5-IC-AQg" secondAttribute="trailing" constant="10" id="vq4-WV-JQG"/>
                             <constraint firstItem="TP5-IC-AQg" firstAttribute="top" secondItem="DIG-IL-Ufu" secondAttribute="bottom" id="wjf-4S-hdX"/>
@@ -415,21 +429,7 @@
                             <constraint firstItem="W6y-Jc-OOF" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" id="xgq-GE-ZQT"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Yje-aI-2Jh">
-                        <nil key="title"/>
-                        <button key="titleView" opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="NaA-2c-dpE">
-                            <rect key="frame" x="145" y="11" width="124" height="22"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                            <color key="tintColor" red="0.090196078430000007" green="0.16862745100000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            <state key="normal" title="Last 30 days " image="icons8-sort_down">
-                                <color key="titleColor" red="0.090196078430000007" green="0.16862745100000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            </state>
-                            <connections>
-                                <action selector="periodPressed:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="Jne-Np-rnD"/>
-                            </connections>
-                        </button>
+                    <navigationItem key="navigationItem" title="History" id="Yje-aI-2Jh">
                         <barButtonItem key="rightBarButtonItem" title="Share" id="irp-Eq-98e"/>
                     </navigationItem>
                     <connections>
@@ -806,8 +806,8 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Y2y-cq-a95" userLabel="History" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="History" image="history" id="cPa-gy-q4n"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="DVd-Y6-o9g">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="DVd-Y6-o9g">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.13725490200000001" green="0.33333333329999998" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

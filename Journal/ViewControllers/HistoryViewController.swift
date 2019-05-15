@@ -178,7 +178,7 @@ class HistoryViewController: UIViewController {
         
         
         chartView.rightAxis.enabled = false
-        chartView.legend.form = .square
+        chartView.legend.form = .line
         chartView.legend.horizontalAlignment = .center
         
 //        chartView.animate(xAxisDuration: 2.0)
