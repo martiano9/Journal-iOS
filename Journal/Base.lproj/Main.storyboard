@@ -28,7 +28,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dMB-1Y-6f4">
                                             <rect key="frame" x="16" y="20" width="382" height="15"/>
                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                            <color key="textColor" red="0.42745098039215684" green="0.47058823529411764" blue="0.5490196078431373" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <color key="textColor" red="0.090196078431372548" green="0.16862745098039217" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <nil key="highlightedColor"/>
                                             <size key="shadowOffset" width="0.0" height="0.0"/>
                                         </label>
@@ -186,6 +186,11 @@
                             <constraint firstItem="LeM-8F-58x" firstAttribute="top" secondItem="u1e-aa-O3Q" secondAttribute="bottom" id="eKd-JB-qT1"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="PUg-6j-2Rf">
+                        <barButtonItem key="rightBarButtonItem" image="edit_row" style="plain" id="wBu-z3-9eN">
+                            <color key="tintColor" red="0.13725490200000001" green="0.33333333329999998" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="Image" destination="LeM-8F-58x" id="gjF-6u-QUv"/>
                         <outlet property="LblText" destination="EYl-Dz-BVo" id="T1c-2c-agT"/>
@@ -368,7 +373,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TP5-IC-AQg" customClass="LineChartView" customModule="Charts">
-                                <rect key="frame" x="5" y="191" width="404" height="200"/>
+                                <rect key="frame" x="5" y="176" width="404" height="200"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="86f-ko-8Dh"/>
@@ -377,18 +382,38 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mood" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DIG-IL-Ufu">
                                 <rect key="frame" x="20" y="155" width="374" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                <color key="textColor" red="0.42745098039215684" green="0.47058823529411764" blue="0.5490196078431373" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="textColor" red="0.090196078431372548" green="0.16862745098039217" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Entries" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W6y-Jc-OOF">
+                                <rect key="frame" x="20" y="384" width="374" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <color key="textColor" red="0.090196078430000007" green="0.16862745100000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8PR-No-u0T" customClass="BarChartView" customModule="Charts">
+                                <rect key="frame" x="5" y="405" width="404" height="200"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="jDi-Cf-rxh"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="tkL-i3-cee"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="8PR-No-u0T" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" constant="5" id="7jw-zI-CVK"/>
                             <constraint firstItem="TP5-IC-AQg" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" constant="5" id="Ej7-1G-SuD"/>
                             <constraint firstItem="DIG-IL-Ufu" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" id="NIF-Uc-TJ8"/>
+                            <constraint firstItem="W6y-Jc-OOF" firstAttribute="top" secondItem="TP5-IC-AQg" secondAttribute="bottom" constant="8" id="huF-Y4-tyi"/>
                             <constraint firstItem="DIG-IL-Ufu" firstAttribute="trailing" secondItem="QS5-Rx-YEW" secondAttribute="trailingMargin" id="omJ-aV-5n4"/>
+                            <constraint firstItem="W6y-Jc-OOF" firstAttribute="trailing" secondItem="QS5-Rx-YEW" secondAttribute="trailingMargin" id="pCR-S3-HT0"/>
+                            <constraint firstItem="8PR-No-u0T" firstAttribute="top" secondItem="W6y-Jc-OOF" secondAttribute="bottom" id="sTs-c5-Puk"/>
                             <constraint firstAttribute="trailing" secondItem="TP5-IC-AQg" secondAttribute="trailing" constant="5" id="vq4-WV-JQG"/>
-                            <constraint firstItem="TP5-IC-AQg" firstAttribute="top" secondItem="DIG-IL-Ufu" secondAttribute="bottom" constant="15" id="wjf-4S-hdX"/>
+                            <constraint firstItem="TP5-IC-AQg" firstAttribute="top" secondItem="DIG-IL-Ufu" secondAttribute="bottom" id="wjf-4S-hdX"/>
                             <constraint firstItem="DIG-IL-Ufu" firstAttribute="top" secondItem="cwe-BX-fo7" secondAttribute="bottom" constant="15" id="xNO-3t-Kn6"/>
+                            <constraint firstAttribute="trailing" secondItem="8PR-No-u0T" secondAttribute="trailing" constant="5" id="xZ3-Qn-4KK"/>
+                            <constraint firstItem="W6y-Jc-OOF" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" id="xgq-GE-ZQT"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="History" id="Yje-aI-2Jh"/>
@@ -431,6 +456,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="byS-WQ-X5H">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.13725490200000001" green="0.33333333329999998" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" red="0.10588235294117647" green="0.14901960784313725" blue="0.2627450980392157" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -790,6 +816,7 @@
         <image name="book" width="25.666666030883789" height="25.666666030883789"/>
         <image name="checkmark" width="32" height="32"/>
         <image name="clsoe" width="32" height="32"/>
+        <image name="edit_row" width="25.666666030883789" height="25.666666030883789"/>
         <image name="history" width="25.666666030883789" height="25.666666030883789"/>
         <image name="mood_1" width="32" height="32"/>
         <image name="mood_2" width="32" height="32"/>

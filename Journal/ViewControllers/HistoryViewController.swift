@@ -12,8 +12,8 @@ import Charts
 class HistoryViewController: UIViewController {
 
     @IBOutlet var chartView: LineChartView!
-    @IBOutlet var sliderX: UISlider!
-    @IBOutlet var sliderTextX: UITextField!
+    @IBOutlet var barChartView: BarChartView!
+    
     var lastPeriodLength: Int = 30
     
     override func viewDidLoad() {
