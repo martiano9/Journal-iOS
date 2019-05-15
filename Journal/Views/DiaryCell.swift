@@ -9,12 +9,12 @@
 import Foundation
 import UIKit
 
-class DiaryTableViewCell: UITableViewCell {
+class DiaryCell: UITableViewCell {
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblTime: UILabel!
     @IBOutlet weak var lblText: UILabel!
     @IBOutlet weak var thumbnailImage: UIImageView!
-    @IBOutlet weak var thumbnailAspectRatio: NSLayoutConstraint!
+    @IBOutlet var thumbnailAspectRatio: NSLayoutConstraint!
     @IBOutlet weak var thumbnailHeight: NSLayoutConstraint!
     @IBOutlet weak var moodImage: UIButton!
     
@@ -24,10 +24,12 @@ class DiaryTableViewCell: UITableViewCell {
             self.lblText.text = data.text
             self.lblTime.text = data.created.toString()
             if let imageData = data.image {
-                self.thumbnailImage.image = UIImage(data: imageData as Data)
+                thumbnailImage.image = UIImage(data: imageData as Data)
+                thumbnailAspectRatio.isActive = true
+                thumbnailHeight.constant = 240
             } else {
-                self.thumbnailImage.removeConstraint(thumbnailAspectRatio)
-                self.thumbnailHeight.constant = 0
+                thumbnailAspectRatio.isActive = false
+                thumbnailHeight.constant = 0
             }
             // Set mood Icon
             let moodIdx: Int = Int(data.mood - 1)

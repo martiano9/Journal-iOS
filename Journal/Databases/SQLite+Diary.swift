@@ -42,8 +42,8 @@ extension SQLite {
     public func insertDiary(diary: Diary) {
         let insertQuery = """
             INSERT INTO Diary (
-                Id, Title, Text, Location, Mood, Weather, IsFavorite, Image)
-                VALUES (?, ?, ?, ?, ?, ? , ?, ?);
+                Id, Title, Text, Location, Mood, Weather, IsFavorite, Image, Created)
+                VALUES (?, ?, ?, ?, ?, ? , ?, ?, ?);
         """
         insertWithQuery(insertQuery, bindingFunction: { (insertStatement) in
             sqlite3_bind_int(insertStatement, 1, diary.ID)
@@ -53,6 +53,7 @@ extension SQLite {
             sqlite3_bind_int(insertStatement, 5, diary.mood)
             sqlite3_bind_int(insertStatement, 6, diary.weather)
             sqlite3_bind_int(insertStatement, 7, diary.isFavorite.intValue)
+            sqlite3_bind_text(insertStatement, 9, NSString(string:diary.created.toDateString()).utf8String, -1, nil)
 //            sqlite3_bind_blob(insertStatement, 8, diary.image?.bytes, Int32(diary.image?.length), nil)
         })
     }
@@ -89,14 +90,13 @@ extension SQLite {
         """
         deleteWithQuery(Query, bindingFunction: { (statement) in
             sqlite3_bind_int(statement, 1, Id)
-            
         })
     }
     
-    func selectAllDiaries() -> [Diary]
+    func selectAllDiaries(query q:String = "SELECT * FROM Diary ORDER BY Created DESC") -> [Diary]
     {
         var result = [Diary]()
-        let selectQuery = "SELECT * FROM Diary"
+        let selectQuery = q
         selectWithQuery(selectQuery, eachRow: { (row) in
             //create a movie object from each result
             var dairy = Diary(
@@ -107,7 +107,8 @@ extension SQLite {
                 mood: sqlite3_column_int(row, 4),
                 weather: sqlite3_column_int(row, 5),
                 isFavorite: (sqlite3_column_int(row, 6) as NSNumber).boolValue,
-                image: nil
+                image: nil,
+                created: String(cString:sqlite3_column_text(row, 8)).toDate()
             )
             let len = sqlite3_column_bytes(row, 7)
             let point = sqlite3_column_blob(row, 7)
@@ -117,6 +118,23 @@ extension SQLite {
             
             //add it to the result array
             result += [dairy]
+        })
+        return result
+    }
+    
+    func diariesGroupByDate() -> [DiaryGroup]
+    {
+        var result = [DiaryGroup]()
+        let selectQuery = "select COUNT(*) Count, strftime('%d-%m-%Y', Created) DateStr from Diary group by DateStr ORDER BY Created DESC"
+        selectWithQuery(selectQuery, eachRow: { (row) in
+            //create a movie object from each result
+            let group = DiaryGroup(
+                Count: sqlite3_column_int(row, 0),
+                DateStr: String(cString:sqlite3_column_text(row, 1)),
+                Diaries: selectAllDiaries(query: "SELECT * FROM Diary WHERE strftime('%d-%m-%Y', Created) = '\(String(cString:sqlite3_column_text(row, 1)))' ORDER BY Created DESC")
+            )
+            //add it to the result array
+            result += [group]
         })
         return result
     }
