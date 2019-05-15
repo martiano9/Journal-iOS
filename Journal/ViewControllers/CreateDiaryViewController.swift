@@ -75,6 +75,12 @@ class CreateDiaryViewController: UIViewController {
     
     @IBAction func donePressed(_ sender: Any) {
         //TODO: Save content here
+        
+        if let m=mood?.value {
+            SQLite.shared.insertDiary(diary: Diary(title: "test", location: "test"
+                ,text: "test", mood: m, weather: 1, isFavorite: false))
+            
+        }
         self.dismiss(animated: true, completion: nil)
     }
     

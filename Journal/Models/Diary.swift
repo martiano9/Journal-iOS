@@ -9,7 +9,7 @@
 import Foundation
 
 struct Diary {
-    var ID: Int32
+    var ID: Int32?
     var title: String
     var location: String
     var text: String
@@ -20,7 +20,7 @@ struct Diary {
     var created: Date
     var edited: Date
     
-    init(ID: Int32, title: String, location: String, text: String, mood: Int32, weather: Int32 = 1, isFavorite: Bool = false, image:NSData? = nil, created: Date? = nil) {
+    init(title: String, location: String, text: String, mood: Int32, weather: Int32 = 1, isFavorite: Bool = false, image:NSData? = nil, created: Date? = nil, ID: Int32? = nil) {
         self.ID = ID
         self.title = title
         self.location = location
@@ -30,6 +30,19 @@ struct Diary {
         self.weather = weather
         self.isFavorite = isFavorite
         self.created = created ?? Date()
+        self.edited = Date()
+    }
+    init(mood: Int32) {
+        self.ID = -1
+        self.title = ""
+        self.location = ""
+        self.text = ""
+        self.mood = mood
+        self.image = nil
+        self.weather = -1
+        self.isFavorite = false
+        
+        self.created = Date()
         self.edited = Date()
     }
 }
