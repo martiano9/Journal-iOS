@@ -22,7 +22,7 @@ class DiaryCell: UITableViewCell {
         didSet {
             self.lblTitle.text = data.title
             self.lblText.text = data.text
-            self.lblTime.text = data.created.toString()
+            self.lblTime.text = data.created.toDateString(withFormat: "HH:mm")
             if let imageData = data.image {
                 thumbnailImage.image = UIImage(data: imageData as Data)
                 thumbnailAspectRatio.isActive = true
