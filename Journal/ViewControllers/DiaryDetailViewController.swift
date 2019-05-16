@@ -14,6 +14,7 @@ class DiaryDetailViewController: UIViewController {
     @IBOutlet weak var LblTitle: UILabel!
     @IBOutlet weak var LblText: UITextView!
     @IBOutlet weak var Image: UIImageView!
+    @IBOutlet weak var BtnEdit: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,8 +36,19 @@ class DiaryDetailViewController: UIViewController {
         } else {
            
         }
+        
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        if (segue.identifier == "EditDiary") {
+            guard let createDiaryViewController = segue.destination as? CreateDiaryViewController else {
+                fatalError("Unexpeted Error")
+            }
+            
+            createDiaryViewController.diaryID = diary?.ID ?? 0
+        }
+    }
 
     /*
     // MARK: - Navigation

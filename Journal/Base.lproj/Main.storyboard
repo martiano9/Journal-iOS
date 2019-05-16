@@ -190,11 +190,12 @@
                         <barButtonItem key="rightBarButtonItem" image="edit_row" style="plain" id="wBu-z3-9eN">
                             <color key="tintColor" red="0.13725490200000001" green="0.33333333329999998" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
-                                <segue destination="UMP-21-x2A" kind="show" id="sPr-3a-Kq1"/>
+                                <segue destination="UMP-21-x2A" kind="show" identifier="EditDiary" id="sPr-3a-Kq1"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="BtnEdit" destination="wBu-z3-9eN" id="5Yn-sY-f5y"/>
                         <outlet property="Image" destination="LeM-8F-58x" id="gjF-6u-QUv"/>
                         <outlet property="LblText" destination="EYl-Dz-BVo" id="T1c-2c-agT"/>
                         <outlet property="LblTime" destination="bfs-je-KCz" id="L9i-Px-w6B"/>
@@ -203,7 +204,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oc5-yf-mZ1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2634.7826086956525" y="-324.10714285714283"/>
+            <point key="canvasLocation" x="2893" y="-320"/>
         </scene>
         <!--Create Diary View Controller-->
         <scene sceneID="GKo-un-yrr">
@@ -218,7 +219,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" translatesAutoresizingMaskIntoConstraints="NO" id="SjE-2o-8Ie">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PiU-19-LE0">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="230"/>
@@ -512,7 +513,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AZC-oy-qFo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3526.0869565217395" y="352.90178571428572"/>
+            <point key="canvasLocation" x="2893" y="437"/>
         </scene>
         <!--Create Mood-->
         <scene sceneID="zZ9-jh-Tj4">
@@ -850,6 +851,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="8FH-8a-9qO"/>
-        <segue reference="2HW-Kd-jmB"/>
+        <segue reference="sPr-3a-Kq1"/>
     </inferredMetricsTieBreakers>
 </document>
