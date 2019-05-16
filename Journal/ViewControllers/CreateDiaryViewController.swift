@@ -92,6 +92,9 @@ class CreateDiaryViewController: UIViewController {
         textView.text = diary?.text
         weather = Weather.list[Int(diary?.weather ?? 0)]
         weatherImage.setImage(weather?.image , for: .normal)
+        if let imageData = diary?.image {
+            headerImageView.image = UIImage(data: imageData as Data)
+        }
         
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -117,18 +120,16 @@ class CreateDiaryViewController: UIViewController {
         //TODO: Save content here
         if (diaryID > 0) {
             if let data = headerImageView?.image?.pngData() {
-                let strBase64 = data.base64EncodedString(options: .lineLength64Characters)
                 SQLite.shared.updateDiary(diary: Diary(ID: diaryID, title: titleText?.text ?? "", location: ""
-                    ,text: textView?.text ?? "", mood: mood?.value ?? 1, weather: weather?.code ?? 1, isFavorite: false, image: strBase64.data(using: .utf8) as NSData?))
+                    ,text: textView?.text ?? "", mood: mood?.value ?? 1, weather: weather?.code ?? 1, isFavorite: false, image: data as NSData?))
                 
             }
             
         }
         else {
             if let data = headerImageView?.image?.pngData() {
-                let strBase64 = data.base64EncodedString(options: .lineLength64Characters)
                 SQLite.shared.insertDiary(diary: Diary(ID: 0, title: titleText?.text ?? "", location: ""
-                    ,text: textView?.text ?? "", mood: mood?.value ?? 1, weather: weather?.code ?? 1, isFavorite: false, image: strBase64.data(using: .utf8) as NSData?))
+                    ,text: textView?.text ?? "", mood: mood?.value ?? 1, weather: weather?.code ?? 1, isFavorite: false, image: data as NSData?))
                 
             }
             

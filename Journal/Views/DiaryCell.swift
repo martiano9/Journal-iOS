@@ -26,12 +26,10 @@ class DiaryCell: UITableViewCell {
             self.lblTime.text = data.created.toDateString(withFormat: "HH:mm")
             
             if let imageData = data.image {
-                let stringdata = String(data: imageData as Data, encoding: String.Encoding.utf8)
-                if let dataDecoded:NSData = NSData(base64Encoded: stringdata!, options: NSData.Base64DecodingOptions(rawValue: 0)) {
-                    thumbnailImage.image = UIImage(data: dataDecoded as Data)
-                    thumbnailAspectRatio.isActive = true
-                    thumbnailHeight.constant = 240
-                }
+                thumbnailImage.image = UIImage(data: imageData as Data)
+                thumbnailAspectRatio.isActive = true
+                thumbnailHeight.constant = 240
+                
             } else {
                 thumbnailAspectRatio.isActive = false
                 thumbnailHeight.constant = 0
