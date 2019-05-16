@@ -17,6 +17,7 @@ class DiaryCell: UITableViewCell {
     @IBOutlet var thumbnailAspectRatio: NSLayoutConstraint!
     @IBOutlet weak var thumbnailHeight: NSLayoutConstraint!
     @IBOutlet weak var moodImage: UIButton!
+    @IBOutlet weak var weatherImage: UIImageView!
     
     var data: Diary! {
         didSet {
@@ -37,6 +38,10 @@ class DiaryCell: UITableViewCell {
             moodImage.tintColor = .white
             moodImage.layer.cornerRadius = 5
             moodImage.backgroundColor = Mood.list[moodIdx].color
+            
+            // Set weather Icon
+            let weatherIdx: Int = Int(data.weather)
+            weatherImage.image = Weather.list[weatherIdx].image
             
             // Title
             if (data.title == "") {
