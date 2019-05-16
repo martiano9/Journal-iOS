@@ -16,15 +16,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        SQLite.shared.insertDiary(diary: Diary(ID: 3, title: "", location: "", text: "",  mood: 5))
-        SQLite.shared.insertDiary(diary: Diary(ID: 4, title: "", location: "", text: "",  mood: 4, created: "2019-05-10 09:00:00".toDate()))
-        SQLite.shared.insertDiary(diary: Diary(ID: 5, title: "", location: "", text: "",  mood: 3, created: "2019-05-9 09:00:00".toDate()))
-        SQLite.shared.insertDiary(diary: Diary(ID: 6, title: "", location: "", text: "",  mood: 3, created: "2019-05-9 09:00:00".toDate()))
-        SQLite.shared.insertDiary(diary: Diary(ID: 7, title: "", location: "", text: "",  mood: 4, created: "2019-05-11 09:00:00".toDate()))
-        SQLite.shared.insertDiary(diary: Diary(ID: 8, title: "", location: "", text: "",  mood: 5, created: "2019-05-11 10:00:00".toDate()))
-        SQLite.shared.insertDiary(diary: Diary(ID: 1, title: "Sample Note", location: "Hobart", text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",  mood: 1))
-        SQLite.shared.insertDiary(diary: Diary(ID: 2, title: "Sample Note", location: "Hobart", text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",  mood: 2))
-        print(SQLite.shared.selectAllDiaries())
+//        SQLite.shared.insertDiary(diary: Diary(ID: 3, title: "", location: "", text: "",  mood: 5))
+//        SQLite.shared.insertDiary(diary: Diary(ID: 4, title: "", location: "", text: "",  mood: 4, created: "2019-05-10 09:00:00".toDate()))
+//        SQLite.shared.insertDiary(diary: Diary(ID: 5, title: "", location: "", text: "",  mood: 3, created: "2019-05-9 09:00:00".toDate()))
+//        SQLite.shared.insertDiary(diary: Diary(ID: 6, title: "", location: "", text: "",  mood: 3, created: "2019-05-9 09:00:00".toDate()))
+//        SQLite.shared.insertDiary(diary: Diary(ID: 7, title: "", location: "", text: "",  mood: 4, created: "2019-05-11 09:00:00".toDate()))
+//        SQLite.shared.insertDiary(diary: Diary(ID: 8, title: "", location: "", text: "",  mood: 5, created: "2019-05-11 10:00:00".toDate()))
+//        SQLite.shared.insertDiary(diary: Diary(ID: 1, title: "Sample Note", location: "Hobart", text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",  mood: 1))
+//        SQLite.shared.insertDiary(diary: Diary(ID: 2, title: "Sample Note", location: "Hobart", text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",  mood: 2))
+//        print(SQLite.shared.selectAllDiaries())
         window?.rootViewController?.view.backgroundColor = .white
         return true
     }

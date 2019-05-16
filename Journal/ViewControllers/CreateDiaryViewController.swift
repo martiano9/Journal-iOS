@@ -55,8 +55,6 @@ class CreateDiaryViewController: UIViewController {
         
         // Transparent navigation
         self.navigationController?.setNavigationBarHidden(false, animated: false)
-//        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-//        self.navigationController?.navigationBar.shadowImage = UIImage()
         
         // Initial values
         timeLabel.text = Date().toDateString()
@@ -70,6 +68,9 @@ class CreateDiaryViewController: UIViewController {
         if (diaryID != -1) {
             loadDiary()
         }
+    }
+    
+    @IBAction func cameraPressed(_ sender: Any) {
     }
     
     private func loadDiary() {
@@ -124,7 +125,7 @@ class CreateDiaryViewController: UIViewController {
     }
     
     @IBAction func weatherPressed(_ sender: Any) {
-        let actionSheet = UIAlertController(title: "My Action Sheet", message: "My Action Sheet Message", preferredStyle: .actionSheet)
+        let actionSheet = UIAlertController(title: "Select Weather", message: "Record the weather", preferredStyle: .actionSheet)
         for w in Weather.list {
             let action = UIAlertAction(title: w.title, style: .default) { (action) in
                 self.weatherImage.setImage(w.image, for: .normal)
@@ -139,32 +140,26 @@ class CreateDiaryViewController: UIViewController {
         actionSheet.addAction(cancelAction)
         present(actionSheet, animated: true, completion: nil)
     }
+    
+    @IBAction func moodPressed(_ sender: Any) {
+        let actionSheet = UIAlertController(title: "Select Mood", message: "Recrod your mood", preferredStyle: .actionSheet)
+        for w in Mood.list {
+            let action = UIAlertAction(title: w.description, style: .default) { (action) in
+                self.moodImage.setImage(w.image, for: .normal)
+                self.moodImage.tintColor = w.color
+                self.mood = w
+            }
+            
+            action.setValue(w.image, forKey: "image")
+            actionSheet.addAction(action)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil) //Will just dismiss the action sheet
+        actionSheet.addAction(cancelAction)
+        present(actionSheet, animated: true, completion: nil)
+    }
 }
 
 private extension CreateDiaryViewController {
     
-}
-
-extension CreateDiaryViewController: UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        let contentOffsetY = scrollView.contentOffset.y
-//        if contentOffsetY < 0.0 {
-//            headerHeightConstraint?.constant = Constants.headerHeight - scrollView.contentOffset.y
-//            headerTopConstraint?.constant = contentOffsetY
-//        } else {
-//            let parallaxFactor: CGFloat = 0.25
-//            let offsetY = contentOffsetY * parallaxFactor
-//            let minOffsetY: CGFloat = 8.0
-//            let availableOffset = min(offsetY, minOffsetY)
-//            let contentRectOffsetY = availableOffset / Constants.headerHeight
-//            headerTopConstraint?.constant = 0
-//            headerImageView.layer.contentsRect = CGRect(x: 0, y: -contentRectOffsetY, width: 1, height: 1)
-//            headerHeightConstraint?.constant = Constants.headerHeight
-//        }
-//        
-//        // Navigationbar animation
-//        let offset = contentOffsetY / (Constants.headerHeight / 2)
-//        self.navigationController?.navigationBar.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: min(offset, 1))
-//        UIApplication.shared.statusBarView?.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: min(offset, 1))
-    }
 }
