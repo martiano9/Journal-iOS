@@ -29,6 +29,8 @@ class CreateDiaryViewController: UIViewController {
     @IBOutlet weak var titleText: UITextField!
     private var label: UILabel!
     private var titleTextField: UITextField!
+    public var diaryID: Int32 = -1
+    
     
     private var headerHeightConstraint1: NSLayoutConstraint!
     
@@ -64,13 +66,34 @@ class CreateDiaryViewController: UIViewController {
             moodImage.setImage(mood?.image, for: .normal)
             moodImage.tintColor = mood?.color
         }
+        
+        if (diaryID != -1) {
+            loadDiary()
+        }
     }
     
+    private func loadDiary() {
+        let diary = SQLite.shared.selectDairyBy(Id: diaryID)
+        timeLabel.text = diary?.created.toString()
+        if let m = diary?.mood {
+            mood = Mood.list[Int(m) - 1]
+        }
+       
+        if (diary?.mood != -1) {
+            moodImage.setImage(mood?.image, for: .normal)
+            moodImage.tintColor = mood?.color
+        }
+        titleText.text = diary?.title ?? ""
+        textView.text = diary?.text
+        weather = Weather.list[Int(diary?.weather ?? 0)]
+        weatherImage.setImage(weather?.image , for: .normal)
+        
+    }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
     
-    @IBAction func cancelPressed(_ sender: Any) {
+    fileprivate func returnDairyScreen() {
         if self.presentingViewController != nil {
             self.dismiss(animated: true, completion: {
                 self.navigationController!.popToRootViewController(animated: true)
@@ -81,14 +104,23 @@ class CreateDiaryViewController: UIViewController {
         }
     }
     
+    @IBAction func cancelPressed(_ sender: Any) {
+        returnDairyScreen()
+    }
+    
     @IBAction func donePressed(_ sender: Any) {
         //TODO: Save content here
         
-        SQLite.shared.insertDiary(diary: Diary(ID: 0, title: titleText?.text ?? "", location: ""
+        if (diaryID > 0) {
+            SQLite.shared.updateDiary(diary: Diary(ID: diaryID, title: titleText?.text ?? "", location: ""
                 ,text: textView?.text ?? "", mood: mood?.value ?? 1, weather: weather?.code ?? 1, isFavorite: false))
-            
+        }
+        else {
+            SQLite.shared.insertDiary(diary: Diary(ID: 0, title: titleText?.text ?? "", location: ""
+                ,text: textView?.text ?? "", mood: mood?.value ?? 1, weather: weather?.code ?? 1, isFavorite: false))
+        }
         
-        self.dismiss(animated: true, completion: nil)
+        returnDairyScreen()
     }
     
     @IBAction func weatherPressed(_ sender: Any) {
