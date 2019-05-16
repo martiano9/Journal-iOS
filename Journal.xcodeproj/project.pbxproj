@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BD99D042AECE8C4FFA2083D6 /* Pods_Journal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2E95A8E3B5C3381FE703299 /* Pods_Journal.framework */; };
+		C01C2092228D34F900545CF9 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01C2091228D34F900545CF9 /* ImagePicker.swift */; };
 		E208544922558E6400B24D7F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E208544822558E6400B24D7F /* AppDelegate.swift */; };
 		E208544D22558E6400B24D7F /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E208544C22558E6400B24D7F /* SecondViewController.swift */; };
 		E208545022558E6400B24D7F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E208544E22558E6400B24D7F /* Main.storyboard */; };
@@ -47,6 +48,7 @@
 /* Begin PBXFileReference section */
 		0728A1018AE4BB954995F295 /* Pods-Journal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Journal.release.xcconfig"; path = "Pods/Target Support Files/Pods-Journal/Pods-Journal.release.xcconfig"; sourceTree = "<group>"; };
 		AC3EAD5841070F286BE521CE /* Pods-Journal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Journal.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Journal/Pods-Journal.debug.xcconfig"; sourceTree = "<group>"; };
+		C01C2091228D34F900545CF9 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		E208544522558E6400B24D7F /* Journal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Journal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E208544822558E6400B24D7F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E208544C22558E6400B24D7F /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 				E21ED1D1227C192D009A8F6B /* Date+Format.swift */,
 				E2F3F744228709C500001C2B /* UIImage+Color.swift */,
 				E2539D79228BBF50006C6884 /* String+Date.swift */,
+				C01C2091228D34F900545CF9 /* ImagePicker.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -348,6 +351,7 @@
 				E21ED1C32279FDF0009A8F6B /* SettingsViewController.swift in Sources */,
 				E2539D82228BEDCB006C6884 /* DiaryHistory.swift in Sources */,
 				E2ED4BC5228705BB0095E523 /* CreateMoodViewController.swift in Sources */,
+				C01C2092228D34F900545CF9 /* ImagePicker.swift in Sources */,
 				E2F3F745228709C500001C2B /* UIImage+Color.swift in Sources */,
 				E2539D7E228BD26B006C6884 /* DiaryHeaderCell.swift in Sources */,
 				E21ED1B92279F2DD009A8F6B /* UIColor+Hex.swift in Sources */,

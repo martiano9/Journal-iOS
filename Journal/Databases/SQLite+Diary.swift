@@ -41,8 +41,8 @@ extension SQLite {
     
     public func insertDiary(diary: Diary) {
         let insertQuery = """
-                INSERT INTO Diary (Title, Text, Location, Mood, Weather, IsFavorite, Created)
-                VALUES (?,?,?,?,?,?,?)
+                INSERT INTO Diary (Title, Text, Location, Mood, Weather, IsFavorite, Created, Image)
+                VALUES (?,?,?,?,?,?,?,?)
         """
         insertWithQuery(insertQuery, bindingFunction: { (insertStatement) in
             //sqlite3_bind_int(insertStatement, 1, diary.ID)
@@ -53,7 +53,7 @@ extension SQLite {
             sqlite3_bind_int(insertStatement, 5, diary.weather)
             sqlite3_bind_int(insertStatement, 6, diary.isFavorite.intValue)
             sqlite3_bind_text(insertStatement, 7, NSString(string:diary.created.toDateString()).utf8String, -1, nil)
-//            sqlite3_bind_blob(insertStatement, 8, diary.image?.bytes, Int32(diary.image?.length), nil)
+            sqlite3_bind_blob(insertStatement, 8, diary.image?.bytes, Int32(diary.image?.length ?? 0), nil)
         })
     }
     

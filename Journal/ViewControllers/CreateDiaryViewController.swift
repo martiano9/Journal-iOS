@@ -31,7 +31,7 @@ class CreateDiaryViewController: UIViewController {
     private var titleTextField: UITextField!
     public var diaryID: Int32 = -1
     
-    
+    var imagePicker: ImagePicker!
     private var headerHeightConstraint1: NSLayoutConstraint!
     
     private var _mood: Mood?
@@ -68,9 +68,13 @@ class CreateDiaryViewController: UIViewController {
         if (diaryID != -1) {
             loadDiary()
         }
+        
+        // set up camera
+        self.imagePicker = ImagePicker(presentationController: self, delegate: self)
     }
     
-    @IBAction func cameraPressed(_ sender: Any) {
+    @IBAction func cameraPressed(_ sender: UIButton) {
+        self.imagePicker.present(from: sender)
     }
     
     private func loadDiary() {
@@ -111,14 +115,23 @@ class CreateDiaryViewController: UIViewController {
     
     @IBAction func donePressed(_ sender: Any) {
         //TODO: Save content here
-        
         if (diaryID > 0) {
-            SQLite.shared.updateDiary(diary: Diary(ID: diaryID, title: titleText?.text ?? "", location: ""
-                ,text: textView?.text ?? "", mood: mood?.value ?? 1, weather: weather?.code ?? 1, isFavorite: false))
+            if let data = headerImageView?.image?.pngData() {
+                let strBase64 = data.base64EncodedString(options: .lineLength64Characters)
+                SQLite.shared.updateDiary(diary: Diary(ID: diaryID, title: titleText?.text ?? "", location: ""
+                    ,text: textView?.text ?? "", mood: mood?.value ?? 1, weather: weather?.code ?? 1, isFavorite: false, image: strBase64.data(using: .utf8) as NSData?))
+                
+            }
+            
         }
         else {
-            SQLite.shared.insertDiary(diary: Diary(ID: 0, title: titleText?.text ?? "", location: ""
-                ,text: textView?.text ?? "", mood: mood?.value ?? 1, weather: weather?.code ?? 1, isFavorite: false))
+            if let data = headerImageView?.image?.pngData() {
+                let strBase64 = data.base64EncodedString(options: .lineLength64Characters)
+                SQLite.shared.insertDiary(diary: Diary(ID: 0, title: titleText?.text ?? "", location: ""
+                    ,text: textView?.text ?? "", mood: mood?.value ?? 1, weather: weather?.code ?? 1, isFavorite: false, image: strBase64.data(using: .utf8) as NSData?))
+                
+            }
+            
         }
         
         returnDairyScreen()
@@ -162,4 +175,11 @@ class CreateDiaryViewController: UIViewController {
 
 private extension CreateDiaryViewController {
     
+}
+
+extension CreateDiaryViewController:ImagePickerDelegate {
+    
+    func didSelect(image: UIImage?) {
+        self.headerImageView.image = image
+    }
 }
