@@ -17,7 +17,6 @@
 		E21ED1B92279F2DD009A8F6B /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21ED1B82279F2DD009A8F6B /* UIColor+Hex.swift */; };
 		E21ED1BB2279F607009A8F6B /* UIColor+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21ED1BA2279F607009A8F6B /* UIColor+Theme.swift */; };
 		E21ED1BD2279FC0F009A8F6B /* BarButtonIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21ED1BC2279FC0F009A8F6B /* BarButtonIcon.swift */; };
-		E21ED1BF2279FD96009A8F6B /* MoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21ED1BE2279FD96009A8F6B /* MoodViewController.swift */; };
 		E21ED1C12279FDC7009A8F6B /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21ED1C02279FDC7009A8F6B /* FavoriteViewController.swift */; };
 		E21ED1C32279FDF0009A8F6B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21ED1C22279FDF0009A8F6B /* SettingsViewController.swift */; };
 		E21ED1C5227AB2B6009A8F6B /* DiaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21ED1C4227AB2B6009A8F6B /* DiaryCell.swift */; };
@@ -59,7 +58,6 @@
 		E21ED1B82279F2DD009A8F6B /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		E21ED1BA2279F607009A8F6B /* UIColor+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Theme.swift"; sourceTree = "<group>"; };
 		E21ED1BC2279FC0F009A8F6B /* BarButtonIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarButtonIcon.swift; sourceTree = "<group>"; };
-		E21ED1BE2279FD96009A8F6B /* MoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodViewController.swift; sourceTree = "<group>"; };
 		E21ED1C02279FDC7009A8F6B /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		E21ED1C22279FDF0009A8F6B /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		E21ED1C4227AB2B6009A8F6B /* DiaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryCell.swift; sourceTree = "<group>"; };
@@ -174,7 +172,6 @@
 				E26E01D52283C080008F70A3 /* DiaryDetailViewController.swift */,
 				E21ED1CF227AEFA6009A8F6B /* DiaryTableViewController.swift */,
 				E21ED1C02279FDC7009A8F6B /* FavoriteViewController.swift */,
-				E21ED1BE2279FD96009A8F6B /* MoodViewController.swift */,
 				E21ED1C22279FDF0009A8F6B /* SettingsViewController.swift */,
 				E2ED4BC4228705BB0095E523 /* CreateMoodViewController.swift */,
 				E2F3F748228726A300001C2B /* ConfirmMoodViewController.swift */,
@@ -340,7 +337,6 @@
 			files = (
 				E21ED1C5227AB2B6009A8F6B /* DiaryCell.swift in Sources */,
 				E2F3F747228719CD00001C2B /* AspectButton.swift in Sources */,
-				E21ED1BF2279FD96009A8F6B /* MoodViewController.swift in Sources */,
 				E21ED1D0227AEFA6009A8F6B /* DiaryTableViewController.swift in Sources */,
 				E21ED1C9227ABAE1009A8F6B /* SQLite.swift in Sources */,
 				E2F3F749228726A300001C2B /* ConfirmMoodViewController.swift in Sources */,

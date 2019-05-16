@@ -41,7 +41,9 @@ class DiaryCell: UITableViewCell {
             
             // Set weather Icon
             let weatherIdx: Int = Int(data.weather)
-            weatherImage.image = Weather.list[weatherIdx].image
+            if (weatherIdx != -1) {
+                weatherImage.image = Weather.list[weatherIdx].image
+            }
             
             // Title
             if (data.title == "") {
