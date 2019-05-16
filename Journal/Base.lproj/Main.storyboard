@@ -201,7 +201,7 @@
                         <barButtonItem key="rightBarButtonItem" image="edit_row" style="plain" id="wBu-z3-9eN">
                             <color key="tintColor" red="0.13725490200000001" green="0.33333333329999998" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
-                                <segue destination="UMP-21-x2A" kind="show" id="sPr-3a-Kq1"/>
+                                <segue destination="UMP-21-x2A" kind="show" identifier="EditDiary" id="sPr-3a-Kq1"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -229,7 +229,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" translatesAutoresizingMaskIntoConstraints="NO" id="SjE-2o-8Ie">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PiU-19-LE0">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="230"/>
@@ -790,6 +790,6 @@
         <image name="weather_sunny" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="9B1-yR-QsI"/>
+        <segue reference="sPr-3a-Kq1"/>
     </inferredMetricsTieBreakers>
 </document>
