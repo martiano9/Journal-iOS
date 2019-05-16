@@ -11,11 +11,12 @@ import UIKit
 class DiaryDetailViewController: UIViewController {
     var diary: Diary?
     @IBOutlet weak var LblTime: UILabel!
-    @IBOutlet weak var LblTitle: UILabel!
     @IBOutlet weak var LblText: UITextView!
     @IBOutlet weak var Image: UIImageView!
     @IBOutlet weak var BtnEdit: UIBarButtonItem!
     
+    @IBOutlet weak var weatherBtn: UIButton!
+    @IBOutlet weak var moodBtn: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,14 +24,24 @@ class DiaryDetailViewController: UIViewController {
         if (diary?.title == "" && diary != nil) {
             let moodIdx: Int = Int(diary!.mood - 1)
             self.title = "Feeling \(Mood.list[moodIdx].description)"
-            LblTitle.text = "Feeling \(Mood.list[moodIdx].description)"
         } else {
             self.title = diary?.title
-            LblTitle.text = diary?.title
+        }
+        
+        // Update mood icon
+        let mood = Mood.list.first(where: {$0.value == diary?.mood})
+        if (mood != nil) {
+            moodBtn.setImage(mood?.image, for: .normal)
+            moodBtn.tintColor = mood?.color
+        }
+        // Update weather
+        let weather = Weather.list.first(where: {$0.code == diary?.weather})
+        if (weather != nil) {
+            weatherBtn.setImage(weather?.image, for: .normal)
         }
         
         LblTime.text=diary?.created.toString()
-        LblText.text=diary?.text
+        
         if let imageData = diary?.image {
             self.Image.image = UIImage(data: imageData as Data)
         } else {
