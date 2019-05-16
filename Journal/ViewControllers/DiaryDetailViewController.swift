@@ -56,7 +56,7 @@ class DiaryDetailViewController: UIViewController {
             guard let createDiaryViewController = segue.destination as? CreateDiaryViewController else {
                 fatalError("Unexpeted Error")
             }
-            
+            createDiaryViewController.title = "Edit Diary"
             createDiaryViewController.diaryID = diary?.ID ?? 0
         }
     }

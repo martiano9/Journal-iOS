@@ -147,24 +147,24 @@ private extension CreateDiaryViewController {
 
 extension CreateDiaryViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let contentOffsetY = scrollView.contentOffset.y
-        if contentOffsetY < 0.0 {
-            headerHeightConstraint?.constant = Constants.headerHeight - scrollView.contentOffset.y
-            headerTopConstraint?.constant = contentOffsetY
-        } else {
-            let parallaxFactor: CGFloat = 0.25
-            let offsetY = contentOffsetY * parallaxFactor
-            let minOffsetY: CGFloat = 8.0
-            let availableOffset = min(offsetY, minOffsetY)
-            let contentRectOffsetY = availableOffset / Constants.headerHeight
-            headerTopConstraint?.constant = 0
-            headerImageView.layer.contentsRect = CGRect(x: 0, y: -contentRectOffsetY, width: 1, height: 1)
-            headerHeightConstraint?.constant = Constants.headerHeight
-        }
-        
-        // Navigationbar animation
-        let offset = contentOffsetY / (Constants.headerHeight / 2)
-        self.navigationController?.navigationBar.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: min(offset, 1))
-        UIApplication.shared.statusBarView?.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: min(offset, 1))
+//        let contentOffsetY = scrollView.contentOffset.y
+//        if contentOffsetY < 0.0 {
+//            headerHeightConstraint?.constant = Constants.headerHeight - scrollView.contentOffset.y
+//            headerTopConstraint?.constant = contentOffsetY
+//        } else {
+//            let parallaxFactor: CGFloat = 0.25
+//            let offsetY = contentOffsetY * parallaxFactor
+//            let minOffsetY: CGFloat = 8.0
+//            let availableOffset = min(offsetY, minOffsetY)
+//            let contentRectOffsetY = availableOffset / Constants.headerHeight
+//            headerTopConstraint?.constant = 0
+//            headerImageView.layer.contentsRect = CGRect(x: 0, y: -contentRectOffsetY, width: 1, height: 1)
+//            headerHeightConstraint?.constant = Constants.headerHeight
+//        }
+//        
+//        // Navigationbar animation
+//        let offset = contentOffsetY / (Constants.headerHeight / 2)
+//        self.navigationController?.navigationBar.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: min(offset, 1))
+//        UIApplication.shared.statusBarView?.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: min(offset, 1))
     }
 }
