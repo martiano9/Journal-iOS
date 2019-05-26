@@ -216,12 +216,21 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="PUg-6j-2Rf">
-                        <barButtonItem key="rightBarButtonItem" image="edit_row" style="plain" id="wBu-z3-9eN">
-                            <color key="tintColor" red="0.13725490200000001" green="0.33333333329999998" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            <connections>
-                                <segue destination="UMP-21-x2A" kind="show" identifier="EditDiary" id="sPr-3a-Kq1"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem image="edit_row" style="plain" id="wBu-z3-9eN">
+                                <color key="tintColor" red="0.13725490200000001" green="0.33333333329999998" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <connections>
+                                    <segue destination="UMP-21-x2A" kind="show" identifier="EditDiary" id="sPr-3a-Kq1"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="icons8-delete_trash" style="plain" id="ORw-sf-c2i">
+                                <inset key="imageInsets" minX="6" minY="0.0" maxX="6" maxY="6"/>
+                                <color key="tintColor" red="0.73893529179999995" green="0.23642882700000001" blue="0.20781326289999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <connections>
+                                    <action selector="deletePressed:" destination="34p-be-BZB" id="KX4-gx-1Vl"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="Image" destination="LeM-8F-58x" id="CIl-Z5-B6u"/>
@@ -815,6 +824,7 @@
         <image name="edit_row" width="23" height="23"/>
         <image name="history" width="25.666666030883789" height="25.666666030883789"/>
         <image name="icons8-camera" width="32" height="32"/>
+        <image name="icons8-delete_trash" width="25.666666030883789" height="25.666666030883789"/>
         <image name="icons8-sort_down" width="16" height="16"/>
         <image name="mood_1" width="32" height="32"/>
         <image name="mood_2" width="32" height="32"/>

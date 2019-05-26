@@ -48,6 +48,32 @@ class DiaryDetailViewController: UIViewController {
            
         }
         
+        // Text
+        self.LblText.text = diary?.text ?? ""
+        
+    }
+    
+    @IBAction func deletePressed(_ sender: Any) {
+        if let diaryID = diary?.ID {
+            let alert = UIAlertController(title: "Delete Diary", message: "Do you want to delete this diary? This action cannot be undone!", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                SQLite.shared.deleteDiary(Id: diaryID)
+                self.returnToRoot()
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            
+        }
+    }
+    func returnToRoot() {
+        if self.presentingViewController != nil {
+            self.dismiss(animated: true, completion: {
+                self.navigationController!.popToRootViewController(animated: true)
+            })
+        }
+        else {
+            self.navigationController?.popToRootViewController(animated: true)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
